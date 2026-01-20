@@ -91,3 +91,7 @@
 .btn-ghost:hover{
   background-color: rgb(246, 248, 252) !important;
 }
+
+a{
+    text-decoration: none   ;
+}
