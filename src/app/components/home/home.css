@@ -1,0 +1,292 @@
+/* Lienzo */
+.contenedor{
+  margin-top: 50px;
+  background-color: rgb(246, 248, 252);
+
+}
+
+/* Barra HOME (subheader) */
+.div-titulo{
+  display: flex;
+  align-items: center;
+  height: 56px;
+  background-color: rgb(242, 241, 241);
+  border-bottom: 1px solid rgb(226, 232, 240);
+}
+
+.titulo{
+  padding-left: 20px;
+  margin: 0;
+  font-size: 16px;
+  letter-spacing: 0.8px;
+  color: rgb(15, 23, 42);
+}
+
+/* Contenido */
+.body{
+  padding: 24px;
+}
+
+/* Bienvenida */
+.welcome-title{
+  margin: 0 0 10px 0;
+  font-size: 36px;
+  line-height: 1.1;
+  color: rgb(15, 23, 42);
+}
+
+.status-row{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-text{
+  color: rgb(71, 85, 105);
+  font-weight: 500;
+}
+
+/* Chip estado */
+.chip{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 700;
+  font-size: 14px;
+  border: 1px solid transparent;
+}
+
+.chip-dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.chip-success{
+  background-color: rgb(220, 252, 231);
+  color: rgb(22, 163, 74);
+  border-color: rgb(134, 239, 172);
+}
+
+/* Grid principal */
+.grid-home{
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+/* Card base */
+.card{
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(226, 232, 240);
+  border-radius: 18px;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.10);
+}
+
+/* Card principal */
+.card-main{
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  padding: 22px;
+  min-height: 220px;
+}
+
+.card-main-left{
+  padding-right: 16px;
+}
+
+.metric-label{
+  color: rgb(100, 116, 139);
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.metric-value{
+  color: rgb(15, 23, 42);
+  font-weight: 800;
+  font-size: 42px;
+}
+
+.divider{
+  height: 1px;
+  background-color: rgb(226, 232, 240);
+  margin: 16px 0;
+}
+
+/* Bloque reloj */
+.card-main-right{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.clock-circle{
+  width: 150px;
+  height: 150px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgb(255, 255, 255);
+}
+
+.icono-reloj{
+  font-size: 120px;
+  width: 120px;
+  height: 120px;
+  color: rgb(220, 53, 69);
+}
+
+/* Botón principal */
+.btn-primary{
+  height: 44px;
+  padding: 0 18px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+  color: rgb(255, 255, 255);
+  background-color: rgb(220, 53, 69);
+  box-shadow: 0 10px 20px rgba(220, 53, 69, 0.28);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.btn-primary:hover{
+  background-color: rgb(176, 42, 55);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 26px rgba(220, 53, 69, 0.34);
+}
+
+.btn-primary:active{
+  transform: translateY(0);
+  box-shadow: 0 8px 16px rgba(220, 53, 69, 0.22);
+}
+
+/* Card derecha */
+.card-side{
+  padding: 16px;
+}
+
+.card-head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.card-title{
+  margin: 0;
+  font-size: 18px;
+  color: rgb(15, 23, 42);
+}
+
+.link{
+  color: rgb(59, 93, 163);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.link:hover{
+  text-decoration: underline;
+}
+
+/* Mini tabla */
+.mini-table{
+  border-top: 1px solid rgb(226, 232, 240);
+  padding-top: 10px;
+}
+
+.mini-row{
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.8fr;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgb(241, 245, 249);
+  color: rgb(15, 23, 42);
+  font-weight: 600;
+}
+
+.mini-head{
+  color: rgb(100, 116, 139);
+  font-weight: 800;
+  border-bottom: 1px solid rgb(226, 232, 240);
+}
+
+.right{
+  text-align: right;
+}
+
+/* Paginador simple */
+.pager{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 12px;
+}
+
+.pager-btn{
+  width: 34px;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid rgb(226, 232, 240);
+  background: rgb(248, 250, 252);
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.pager-text{
+  color: rgb(71, 85, 105);
+  font-weight: 700;
+}
+
+/* Card inferior ocupa todo */
+.card-bottom{
+  grid-column: 1 / -1;
+  padding: 16px;
+}
+
+/* Tabla simple abajo */
+.table{
+  margin-top: 10px;
+  border-top: 1px solid rgb(226, 232, 240);
+}
+
+.row{
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.8fr;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgb(241, 245, 249);
+  color: rgb(15, 23, 42);
+  font-weight: 600;
+}
+
+.row.head{
+  color: rgb(100, 116, 139);
+  font-weight: 900;
+}
+
+/* Responsive (cuando la pantalla sea más pequeña) */
+@media (max-width: 980px){
+  .grid-home{
+    grid-template-columns: 1fr;
+  }
+
+  .card-main{
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .metric-value{
+    font-size: 36px;
+  }
+}

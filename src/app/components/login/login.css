@@ -1,0 +1,93 @@
+/* Fondo igual que tu home */
+.login-page{
+  min-height: calc(100vh - 64px);  /* por si tu header es fijo */
+  padding: 24px;
+  display: grid;
+  place-items: center;
+  background-color: rgb(246, 248, 252);
+}
+
+/* Card principal */
+.login-card{
+  width: 100%;
+  max-width: 420px;
+  border-radius: 18px;
+  border: 1px solid rgb(226, 232, 240);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.10);
+  padding: 18px 18px 12px;
+}
+
+/* Cabecera del login */
+.brand{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.brand-icon{
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+
+  /* azul suave */
+  background-color: rgb(239, 246, 255);
+  border: 1px solid rgb(191, 219, 254);
+  color: rgb(24, 58, 138);
+}
+
+.brand-text h1{
+  margin: 0;
+  font-size: 20px;
+  color: rgb(15, 23, 42);
+  font-weight: 800;
+}
+
+.brand-text p{
+  margin: 4px 0 0;
+  color: rgb(71, 85, 105);
+  font-weight: 500;
+}
+
+/* Form */
+.form{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.full{
+  width: 100%;
+}
+
+/* Botón principal: azul corporativo */
+.btn-primary{
+  border-radius: 12px !important;
+  height: 44px;
+  background-color: rgb(24, 58, 138) !important;
+  color: rgb(255, 255, 255) !important;
+  box-shadow: 0 10px 20px rgba(24, 58, 138, 0.22) !important;
+}
+
+.btn-primary:hover{
+  background-color: rgb(16, 74, 158) !important;
+}
+
+.btn-primary:active{
+  background-color: rgb(12, 54, 120) !important;
+}
+
+/* Botón secundario */
+.btn-ghost{
+  border-radius: 12px !important;
+  height: 44px;
+  border-color: rgb(226, 232, 240) !important;
+  color: rgb(59, 93, 163) !important;
+  background-color: rgb(255, 255, 255) !important;
+}
+
+.btn-ghost:hover{
+  background-color: rgb(246, 248, 252) !important;
+}

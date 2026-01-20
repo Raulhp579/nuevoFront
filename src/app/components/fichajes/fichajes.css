@@ -1,0 +1,68 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table.mat-mdc-table {
+  background-color: transparent;
+}
+
+th.mat-mdc-header-cell,
+td.mat-mdc-cell {
+  padding: 14px 16px;
+}
+
+tr.mat-mdc-row {
+  border-bottom: 1px solid #e3e5e8;
+}
+
+tr.mat-mdc-row:last-child {
+  border-bottom: none;
+}
+
+.botones{
+  display: flex;
+  gap: 5px;
+}
+
+.botonEditar{
+  width: 50px;
+  background-color:rgb(59, 93, 163);
+  border: 0px;
+  border-radius: 10px;
+  color: white;
+/*   color: rgb(11, 11, 202); */
+}
+
+.botonBorrar{
+  width: 50px;
+  background-color:  rgb(220, 53, 69);
+  border: 0px;
+  border-radius: 10px;
+  color: white;
+}
+
+.table-card{
+  margin: 80px 20px 20px;
+  border-radius: 14px;
+  border: 1px solid #ced0d3;     
+  background-color: rgb(255, 255, 255);
+  overflow: hidden;
+  box-shadow: 5px 4px 38px -13px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 5px 4px 38px -13px rgba(0,0,0,0.75);
+  -moz-box-shadow: 5px 4px 38px -13px rgba(0,0,0,0.75);
+}
+
+
+
+.email{
+  color: blue;
+}
+
+.negritas{
+  font-weight:400;
+}
+
+.headerTab{
+  background-color: rgb(236, 234, 234);
+}

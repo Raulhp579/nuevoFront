@@ -1,0 +1,118 @@
+<div class="contenedor animate__animated animate__fadeIn">
+  <div class="div-titulo">
+    <h2 class="titulo">HOME</h2>
+  </div>
+
+  <div class="body">
+    <div class="welcome-row">
+      <div>
+        <h1 class="welcome-title">Bienvenido, usuario</h1>
+
+        <div class="status-row">
+          <span class="chip chip-success">
+            <span class="chip-dot"></span>
+            Fichado
+          </span>
+          <span class="status-text">Actualmente estás fichado.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-home">
+      <!-- Card principal -->
+      <section class="card card-main">
+        <div class="card-main-left">
+          <div class="metric">
+            <div class="metric-label">Hora de entrada</div>
+            <div class="metric-value">08:30 AM</div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="metric">
+            <div class="metric-label">Tiempo trabajado</div>
+            <div class="metric-value">02h 30m</div>
+          </div>
+        </div>
+
+        <div class="card-main-right">
+          <div class="clock-circle">
+            <mat-icon class="icono-reloj">schedule</mat-icon>
+          </div>
+          <button class="btn-danger btn-primary" type="button">
+            Fichar salida
+          </button>
+        </div>
+      </section>
+
+      <!-- Card derecha: últimos fichajes -->
+      <aside class="card card-side">
+        <div class="card-head">
+          <h3 class="card-title">Últimos fichajes</h3>
+          <a class="link" href="#">Ver todos</a>
+        </div>
+
+        <div class="mini-table">
+          <div class="mini-row mini-head">
+            <span>Entrada</span>
+            <span>Salida</span>
+            <span class="right">Duración</span>
+          </div>
+
+          <div class="mini-row">
+            <span>08:30</span>
+            <span>— 10:45</span>
+            <span class="right">2h 15m</span>
+          </div>
+          <div class="mini-row">
+            <span>07:57</span>
+            <span>— 17:01</span>
+            <span class="right">9h 03m</span>
+          </div>
+          <div class="mini-row">
+            <span>08:32</span>
+            <span>— 17:02</span>
+            <span class="right">8h 30m</span>
+          </div>
+
+          <div class="pager">
+            <button class="pager-btn" type="button">‹</button>
+            <span class="pager-text">1 de 5</span>
+            <button class="pager-btn" type="button">›</button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Card abajo (opcional): tabla grande) -->
+      <section class="card card-bottom">
+        <div class="card-head">
+          <h3 class="card-title">Últimos fichajes</h3>
+        </div>
+
+        <div class="table">
+          <div class="row head">
+            <span>Hora entrada</span>
+            <span>Hora salida</span>
+            <span class="right">Duración</span>
+          </div>
+
+          <div class="row">
+            <span>08:30 AM</span>
+            <span>— 10:45 AM</span>
+            <span class="right">2h 15m</span>
+          </div>
+          <div class="row">
+            <span>07:57 AM</span>
+            <span>— 05:01 PM</span>
+            <span class="right">9h 03m</span>
+          </div>
+          <div class="row">
+            <span>08:32 AM</span>
+            <span>— 05:02 PM</span>
+            <span class="right">8h 30m</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

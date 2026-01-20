@@ -1,0 +1,18 @@
+import { Component } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
+
+
+@Component({
+  selector: 'app-register',
+  imports: [RouterModule, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule],
+  templateUrl: './register.html',
+  styleUrl: './register.css',
+})
+export class Register {
+
+}

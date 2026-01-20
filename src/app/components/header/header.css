@@ -1,0 +1,117 @@
+mat-drawer-container {
+  height: 100%;
+  border-radius: 0%;
+}
+
+mat-drawer-container .barra {
+  max-width: 10%;
+  height: 100%;
+  border-radius: 0%;
+  background-color: rgb(48, 103, 164);
+}
+
+mat-drawer-container .barra .lista {
+  display: flex;
+  height: 50%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 22px;
+}
+
+mat-drawer-container .barra .lista button {
+  border-radius: 0%;
+  color: rgb(229, 228, 224);
+  box-shadow: none;
+  width: 100%;
+  background-color: transparent;
+}
+
+mat-drawer-container .barra .lista button.activo {
+  background-color: rgb(0, 69, 143);
+}
+
+mat-drawer-container .titulo-grid {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  top: 0;
+  z-index: 1000;
+  position: fixed;
+  background-color: rgb(0, 69, 143);
+  width: 100%;
+}
+
+mat-drawer-container .titulo-grid .letras {
+  color: rgb(229, 228, 224);
+}
+
+mat-drawer-container .titulo-grid .icono {
+  color: rgb(229, 228, 224);
+}
+
+.btn-login {
+  height: 38px;
+  border-radius: 999px !important;
+  padding: 0 14px !important;
+
+  /* frosted glass over blue header */
+  background-color: rgba(255, 255, 255, 0.12);
+  color: rgb(255, 255, 255) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+
+  font-weight: 700;
+}
+
+.btn-login:hover {
+  background-color: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.55) !important;
+}
+
+.btn-login__icon {
+  margin-right: 8px;
+  color: rgb(255, 255, 255);
+}
+
+/* El toolbar puede moverse, pero el botón NO */
+.right-space{
+  position: fixed;
+  top: 12px;       /* ajusta según tu toolbar */
+  right: 16px;
+  z-index: 5000;   /* por encima del drawer */
+  display: flex;
+  align-items: center;
+  margin-left: 0 !important; /* anula el auto */
+}
+
+/* Para que no se te tape el texto del header */
+.titulo-grid{
+  padding-right: 190px; /* aprox ancho del botón */
+}
+
+
+.shell{
+  height: 100vh;  /* clave */
+}
+
+/* sidebar */
+.barra{
+  width: 240px;            /* mejor que max-width:10% */
+  background-color: rgb(48, 103, 164);
+}
+
+/* toolbar */
+.titulo-grid{
+  position: sticky;   /* mejor que fixed aquí */
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  background-color: rgb(0, 69, 143);
+}
+
+.page{
+  padding: 18px;
+}

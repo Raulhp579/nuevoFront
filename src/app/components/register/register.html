@@ -1,0 +1,52 @@
+<div class="login-page animate__animated animate__fadeIn">
+  <mat-card class="login-card">
+    <div class="brand">
+      <div class="brand-icon">
+        <mat-icon>person_add</mat-icon>
+      </div>
+
+      <div class="brand-text">
+        <h1>Crear cuenta</h1>
+        <p>Regístrate para empezar</p>
+      </div>
+    </div>
+
+    <div class="form">
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Nombre</mat-label>
+        <input matInput type="text" autocomplete="name" />
+        <mat-icon matSuffix>badge</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" autocomplete="email" />
+        <mat-icon matSuffix>mail</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Contraseña</mat-label>
+        <input matInput type="password" autocomplete="new-password" />
+        <button mat-icon-button matSuffix type="button" aria-label="Mostrar contraseña">
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Repetir contraseña</mat-label>
+        <input matInput type="password" autocomplete="new-password" />
+        <button mat-icon-button matSuffix type="button" aria-label="Mostrar contraseña">
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <button mat-raised-button class="btn-primary full" type="button">
+        Crear cuenta
+      </button>
+
+      <button mat-stroked-button class="btn-ghost full" type="button" routerLink="/login">
+        Ya tengo cuenta
+      </button>
+    </div>
+  </mat-card>
+</div>

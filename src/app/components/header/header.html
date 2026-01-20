@@ -1,0 +1,40 @@
+<mat-drawer-container class="shell" autosize>
+  <mat-drawer #drawer class="barra" mode="side" >
+    <mat-list role="list" class="lista">
+      <mat-list-item role="listitem">
+        <button mat-fab extended routerLinkActive="activo" routerLink="/home">Home</button>
+      </mat-list-item>
+
+      <mat-list-item role="listitem">
+        <button mat-fab extended routerLinkActive="activo" routerLink="/fichajes">Fichajes</button>
+      </mat-list-item>
+
+      <mat-list-item role="listitem">
+        <button mat-fab extended routerLinkActive="activo" routerLink="/user">Usuarios</button>
+      </mat-list-item>
+    </mat-list>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <mat-toolbar color="primary" class="titulo-grid">
+      <div class="headerText">
+        <button mat-icon-button (click)="drawer.toggle()">
+          <mat-icon class="icono">menu</mat-icon>
+        </button>
+      </div>
+
+      <div class="letras">Gestor Fichajes</div>
+
+      <div class="right-space">
+        <button mat-stroked-button class="btn-login" type="button" routerLink="/login">
+          <mat-icon class="btn-login__icon">person</mat-icon>
+          Iniciar sesión
+        </button>
+      </div>
+    </mat-toolbar>
+
+    <main class="page">
+      <router-outlet></router-outlet>
+    </main>
+  </mat-drawer-content>
+</mat-drawer-container>
