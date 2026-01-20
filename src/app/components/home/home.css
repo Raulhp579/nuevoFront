@@ -93,7 +93,7 @@
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   padding: 22px;
-  min-height: 220px;
+  min-height: 235px;
 }
 
 .card-main-left{
