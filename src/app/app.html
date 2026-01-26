@@ -1,6 +1,18 @@
 <mat-drawer-container class="shell" autosize>
 
   <mat-drawer #drawer class="barra" mode="side" opened>
+
+    <!-- Sidebar header -->
+    <div class="sb-top">
+      <div class="sb-avatar">GF</div>
+      <div class="sb-meta">
+        <div class="sb-title">Gestor Fichajes</div>
+        <div class="sb-subtitle">Panel de control</div>
+      </div>
+    </div>
+
+    <div class="sb-section">Navegación</div>
+
     <mat-nav-list class="nav">
       <a mat-list-item routerLink="/home" routerLinkActive="activo" [routerLinkActiveOptions]="{ exact: true }">
         <mat-icon matListItemIcon>home</mat-icon>
@@ -17,9 +29,11 @@
         <span matListItemTitle>Usuarios</span>
       </a>
     </mat-nav-list>
+
+
   </mat-drawer>
 
-  <mat-drawer-content>
+  <mat-drawer-content class="content">
     <app-header (toggleSidenav)="drawer.toggle()"></app-header>
 
     <main class="page">

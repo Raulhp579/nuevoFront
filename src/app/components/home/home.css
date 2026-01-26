@@ -1,36 +1,38 @@
-/* Lienzo */
+/* Contenedor: pegado arriba */
 .contenedor{
-  margin-top: 50px;
-  background-color: rgb(246, 248, 252);
-
+  margin-top: 0;                 /* 🔥 antes 50px */
+  background: transparent;       /* el fondo ya lo da .page */
 }
 
 /* Barra HOME (subheader) */
 .div-titulo{
   display: flex;
   align-items: center;
-  height: 56px;
-  background-color: rgb(255, 255, 255);
-  border-bottom: 1px solid rgb(226, 232, 240);
-  border-radius: 12px;
+  height: 54px;
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(226, 232, 240);
+  border-radius: 14px;
+  padding: 0 16px;
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.06);
 }
 
 .titulo{
-  padding-left: 20px;
   margin: 0;
-  font-size: 16px;
-  letter-spacing: 0.8px;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 900;
   color: rgb(15, 23, 42);
 }
 
 /* Contenido */
 .body{
-  padding: 24px;
+  padding: 14px 0 0;            /* 🔥 menos aire arriba */
 }
 
 /* Bienvenida */
 .welcome-title{
-  margin: 0 0 10px 0;
+  margin: 16px 0 10px 0;
   font-size: 36px;
   line-height: 1.1;
   color: rgb(15, 23, 42);
@@ -40,11 +42,12 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .status-text{
   color: rgb(71, 85, 105);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 /* Chip estado */
@@ -54,47 +57,47 @@
   gap: 8px;
   border-radius: 999px;
   padding: 8px 14px;
-  font-weight: 700;
-  font-size: 14px;
+  font-weight: 800;
+  font-size: 13px;
   border: 1px solid transparent;
 }
-
 .chip-dot{
   width: 8px;
   height: 8px;
   border-radius: 999px;
   background: currentColor;
 }
-
 .chip-success{
   background-color: rgb(220, 252, 231);
   color: rgb(22, 163, 74);
   border-color: rgb(134, 239, 172);
 }
 
-/* Grid principal */
 .grid-home{
   margin-top: 18px;
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 18px;
-  align-items: start;
+
+  align-items: stretch;         
 }
+
 
 /* Card base */
 .card{
-  background-color: rgb(255, 255, 255);
+  background: rgb(255, 255, 255);
   border: 1px solid rgb(226, 232, 240);
   border-radius: 18px;
-  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.10);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
 }
 
 /* Card principal */
 .card-main{
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: 1.25fr 0.75fr;
   padding: 22px;
-  min-height: 235px;
+  min-height: 240px;
 }
 
 .card-main-left{
@@ -103,20 +106,20 @@
 
 .metric-label{
   color: rgb(100, 116, 139);
-  font-weight: 700;
-  font-size: 14px;
+  font-weight: 800;
+  font-size: 13px;
   margin-bottom: 6px;
 }
 
 .metric-value{
   color: rgb(15, 23, 42);
-  font-weight: 800;
+  font-weight: 900;
   font-size: 42px;
 }
 
 .divider{
   height: 1px;
-  background-color: rgb(226, 232, 240);
+  background: rgb(226, 232, 240);
   margin: 16px 0;
 }
 
@@ -135,7 +138,8 @@
   border-radius: 999px;
   display: grid;
   place-items: center;
-  background: rgb(255, 255, 255);
+  background: radial-gradient(circle at 30% 30%, rgba(59,130,246,.10), rgba(2,6,23,.02));
+  border: 1px solid rgba(15,23,42,.08);
 }
 
 .icono-reloj{
@@ -149,29 +153,24 @@
 .btn-primary{
   height: 44px;
   padding: 0 18px;
-  border-radius: 12px;
+  border-radius: 14px;
   font-size: 15px;
-  font-weight: 800;
+  font-weight: 900;
   cursor: pointer;
   border: none;
   color: rgb(255, 255, 255);
-  background-color: rgb(220, 53, 69);
+  background: rgb(220, 53, 69);
   box-shadow: 0 10px 20px rgba(220, 53, 69, 0.28);
   transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
 }
 
 .btn-primary:hover{
-  background-color: rgb(176, 42, 55);
+  background: rgb(176, 42, 55);
   transform: translateY(-1px);
   box-shadow: 0 14px 26px rgba(220, 53, 69, 0.34);
 }
 
-.btn-primary:active{
-  transform: translateY(0);
-  box-shadow: 0 8px 16px rgba(220, 53, 69, 0.22);
-}
-
-/* Card derecha */
+/* Lado derecho (MAPA) */
 .card-side{
   padding: 16px;
 }
@@ -180,76 +179,79 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgb(226, 232, 240);
 }
 
 .card-title{
   margin: 0;
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 900;
   color: rgb(15, 23, 42);
+}
+
+.card-sub{
+  margin-top: 2px;
+  font-size: 12px;
+  color: rgb(100, 116, 139);
+  font-weight: 700;
 }
 
 .link{
-  color: rgb(59, 93, 163);
+  color: rgb(37, 99, 235);
   text-decoration: none;
-  font-weight: 700;
-}
-
-.link:hover{
-  text-decoration: underline;
-}
-
-/* Mini tabla */
-.mini-table{
-  border-top: 1px solid rgb(226, 232, 240);
-  padding-top: 10px;
-}
-
-.mini-row{
-  display: grid;
-  grid-template-columns: 1fr 1fr 0.8fr;
-  gap: 10px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgb(241, 245, 249);
-  color: rgb(15, 23, 42);
-  font-weight: 600;
-}
-
-.mini-head{
-  color: rgb(100, 116, 139);
   font-weight: 800;
-  border-bottom: 1px solid rgb(226, 232, 240);
+}
+.link:hover{ text-decoration: underline; }
+
+/* Placeholder mapa */
+.map-wrap{
+  margin-top: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(15,23,42,.10);
+  background: linear-gradient(180deg, rgba(248,250,252,1), rgba(241,245,249,1));
+  overflow: hidden;
 }
 
-.right{
-  text-align: right;
+.map{
+  aspect-ratio: 16 / 11;     /* 🔥 tamaño estable para futuro mapa */
+  width: 100%;
+  display: grid;
+  place-items: center;
+  position: relative;
 }
 
-/* Paginador simple */
-.pager{
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 10px;
-  padding-top: 12px;
+.map::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(59,130,246,.18), transparent 45%),
+    radial-gradient(circle at 70% 60%, rgba(220,53,69,.16), transparent 45%);
+  opacity: .9;
 }
 
-.pager-btn{
-  width: 34px;
-  height: 30px;
-  border-radius: 10px;
-  border: 1px solid rgb(226, 232, 240);
-  background: rgb(248, 250, 252);
-  cursor: pointer;
-  font-weight: 900;
+.map-inner{
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 18px;
 }
 
-.pager-text{
-  color: rgb(71, 85, 105);
+.map-title{
+  font-weight: 950;
+  color: rgba(15,23,42,.90);
+  margin-bottom: 6px;
+}
+
+.map-hint{
+  font-size: 13px;
+  color: rgba(15,23,42,.60);
   font-weight: 700;
 }
 
-/* Card inferior ocupa todo */
+/* Card inferior */
 .card-bottom{
   grid-column: 1 / -1;
   padding: 16px;
@@ -268,7 +270,7 @@
   padding: 12px 0;
   border-bottom: 1px solid rgb(241, 245, 249);
   color: rgb(15, 23, 42);
-  font-weight: 600;
+  font-weight: 650;
 }
 
 .row.head{
@@ -276,18 +278,41 @@
   font-weight: 900;
 }
 
-/* Responsive (cuando la pantalla sea más pequeña) */
+.right{ text-align: right; }
+
+/* Responsive */
 @media (max-width: 980px){
-  .grid-home{
-    grid-template-columns: 1fr;
-  }
+  .grid-home{ grid-template-columns: 1fr; }
+  .card-main{ grid-template-columns: 1fr; gap: 16px; }
+  .metric-value{ font-size: 36px; }
+}
 
-  .card-main{
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
+.card-main,
+.card-side{
+  min-height: 280px;             /* prueba 280 / 300 según te guste */
+}
+.card-side{
+  padding: 16px;
+  display: flex;                 /* 🔥 para estirar el mapa */
+  flex-direction: column;
+}
+.map-wrap{
+  margin-top: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(15,23,42,.10);
+  background: linear-gradient(180deg, rgba(248,250,252,1), rgba(241,245,249,1));
+  overflow: hidden;
 
-  .metric-value{
-    font-size: 36px;
-  }
+  flex: 1;                       /* 🔥 ocupa el hueco restante */
+  display: flex;
+}
+
+.map{
+  width: 100%;
+  height: 100%;                  /* 🔥 rellena altura */
+  display: grid;
+  place-items: center;
+  position: relative;
+
+  aspect-ratio: auto;            /* 🔥 quita el ratio fijo */
 }

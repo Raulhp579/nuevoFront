@@ -133,3 +133,11 @@
   .login span{ display:none; }
   .login mat-icon{ margin-right:0; }
 }
+
+.topbar{
+  border-bottom: none !important;
+
+  /* 🔥 tapa el 1px de separación en la esquina */
+  margin-left: -1px;
+  width: calc(100% + 1px);
+}

@@ -39,54 +39,40 @@
           <div class="clock-circle">
             <mat-icon class="icono-reloj">schedule</mat-icon>
           </div>
-          <button class="btn-danger btn-primary" type="button">
+          <button class="btn-primary" type="button">
             Fichar salida
           </button>
         </div>
       </section>
 
-      <!-- Card derecha: últimos fichajes -->
+      <!-- Card derecha: MAPA futuro -->
       <aside class="card card-side">
         <div class="card-head">
-          <h3 class="card-title">Últimos fichajes</h3>
-          <a class="link" href="#">Ver todos</a>
+          <div>
+            <h3 class="card-title">Ubicación</h3>
+            <div class="card-sub">Aquí irá un mapa</div>
+          </div>
+          <a class="link" href="#">Configurar</a>
         </div>
 
-        <div class="mini-table">
-          <div class="mini-row mini-head">
-            <span>Entrada</span>
-            <span>Salida</span>
-            <span class="right">Duración</span>
-          </div>
-
-          <div class="mini-row">
-            <span>08:30</span>
-            <span>— 10:45</span>
-            <span class="right">2h 15m</span>
-          </div>
-          <div class="mini-row">
-            <span>07:57</span>
-            <span>— 17:01</span>
-            <span class="right">9h 03m</span>
-          </div>
-          <div class="mini-row">
-            <span>08:32</span>
-            <span>— 17:02</span>
-            <span class="right">8h 30m</span>
-          </div>
-
-          <div class="pager">
-            <button class="pager-btn" type="button">‹</button>
-            <span class="pager-text">1 de 5</span>
-            <button class="pager-btn" type="button">›</button>
+        <div class="map-wrap">
+          <div class="map">
+            <div class="map-inner">
+              <div class="map-title">Mapa (próximamente)</div>
+              <div class="map-hint">Reserva este espacio para Google Maps / Leaflet</div>
+            </div>
           </div>
         </div>
       </aside>
 
-      <!-- Card abajo (opcional): tabla grande) -->
+      <!-- Card abajo: últimos fichajes -->
       <section class="card card-bottom">
         <div class="card-head">
-          <h3 class="card-title">Últimos fichajes</h3>
+          <div>
+            <h3 class="card-title">Últimos fichajes</h3>
+            <div class="card-sub">Resumen rápido</div>
+          </div>
+          <a class="link" href="#">Ver todos</a>
         </div>
 
         <div class="table">
