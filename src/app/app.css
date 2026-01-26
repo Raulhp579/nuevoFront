@@ -1,0 +1,56 @@
+.shell{
+  height: 100vh;
+  background: #f4f6fb;
+}
+
+/* Drawer */
+.barra{
+  width: 260px;
+  background: linear-gradient(180deg, #0b1220, #0a1020);
+  border-right: 1px solid rgba(148,163,184,.18);
+  color: rgba(255,255,255,.92);
+}
+
+/* Nav list */
+.nav{
+  padding-top: 10px;
+}
+
+/* Cada item */
+.nav a{
+  margin: 6px 10px;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  transition: background .12s ease, border-color .12s ease, transform .12s ease;
+}
+
+/* Texto e iconos: FORZAMOS BLANCO (esto es lo que te falla en la captura) */
+.nav a,
+.nav a .mdc-list-item__primary-text,
+.nav a mat-icon{
+  color: rgba(255,255,255,.86) !important;
+}
+
+/* Hover */
+.nav a:hover{
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.10);
+  transform: translateY(-1px);
+}
+
+/* Activo */
+.nav a.activo{
+  background: rgba(59,130,246,.18);
+  border-color: rgba(59,130,246,.35);
+}
+
+.nav a.activo,
+.nav a.activo .mdc-list-item__primary-text,
+.nav a.activo mat-icon{
+  color: rgba(255,255,255,.95) !important;
+}
+
+/* Contenido */
+.page{
+  padding: 18px;
+}

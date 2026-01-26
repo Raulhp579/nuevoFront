@@ -18,7 +18,7 @@ export class AuthService {
     const token = sessionStorage.getItem("token")
     return new HttpHeaders({
       'Content-Type':'application/json',
-      'Authorization': `Bearer ${token}`
+      /* 'Authorization': `Bearer ${token}` */
     })
   }
 

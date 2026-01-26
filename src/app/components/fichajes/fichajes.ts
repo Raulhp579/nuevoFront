@@ -5,6 +5,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { UserService } from '../../services/user-service';
 import { DatePipe } from '@angular/common';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-fichajes',
@@ -15,26 +16,20 @@ import { DatePipe } from '@angular/common';
 export class Fichajes implements OnInit {
   datasource = new MatTableDataSource<any>();
   displayedColumns: string[] = ['id', 'usuario', 'entrada', 'salida', 'botones'];
-
+  timeEntries = [];
   constructor(
     private timeEntrieService: TimeEntrieService,
-    private userService: UserService
+    private userService: UserService,
+    private cdr: ChangeDetectorRef,
   ) {}
 
-  async ngOnInit() {
-    const timeEntries = await firstValueFrom(
-      this.timeEntrieService.getTimeEntries()
-    );
+  async loadTable() {
+    this.timeEntries = await firstValueFrom(this.timeEntrieService.getTimeEntries());
     const users = await firstValueFrom(this.userService.verUsuarios());
 
     const times: any[] = [];
-    timeEntries.forEach(
-      (timeEntrie: {
-        id: any;
-        user_id: number;
-        clock_in_at: any;
-        clock_out_at: any;
-      }) => {
+    this.timeEntries.forEach(
+      (timeEntrie: { id: any; user_id: number; clock_in_at: any; clock_out_at: any }) => {
         const time = {
           id: timeEntrie.id,
           usuario: this.associateUserId(timeEntrie.user_id, users),
@@ -43,14 +38,28 @@ export class Fichajes implements OnInit {
         };
 
         times.push(time);
-      }
+      },
     );
 
     this.datasource.data = times;
+  }
+
+  async ngOnInit() {
+    await this.loadTable();
   }
 
   associateUserId(id_user: number, users: Array<any>) {
     const user = users.find((item) => item.id === id_user);
     return user ? user.name : `Usuario ${id_user}`;
   }
+
+  async deleteTimeEntrie(id: number) {
+    const response = await firstValueFrom(this.timeEntrieService.deleteTimeEntrie(id));
+
+    console.log(response);
+
+    this.loadTable();
+    
+  }
+  
 }
