@@ -131,18 +131,12 @@
           <!-- Entrada -->
           <mat-form-field>
             <mat-label>Entrada</mat-label>
-
-            <input matInput [matTimepicker]="pickerIn" />
-            <mat-timepicker-toggle matIconSuffix [for]="pickerIn"></mat-timepicker-toggle>
-            <mat-timepicker #pickerIn></mat-timepicker>
+            <input matInput type="datetime-local" [(ngModel)]="clock_in" name="clock_in" />
           </mat-form-field>
 
-          <!-- Salida -->
           <mat-form-field>
             <mat-label>Salida</mat-label>
-            <input matInput [matTimepicker]="pickerOut" />
-            <mat-timepicker-toggle matIconSuffix [for]="pickerOut"></mat-timepicker-toggle>
-            <mat-timepicker #pickerOut></mat-timepicker>
+            <input matInput type="datetime-local" [(ngModel)]="clock_out" name="clock_out" />
           </mat-form-field>
 
           <div class="hint">
@@ -157,7 +151,9 @@
           Cancelar
         </button>
 
-        <button mat-raised-button class="btn-primary" type="button">Guardar cambios</button>
+        <button mat-raised-button class="btn-primary" type="button" (click)="editTimeEntrie()">
+          Guardar cambios
+        </button>
       </mat-card-actions>
     </mat-card>
   </div>

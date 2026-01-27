@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 import { UserService } from '../../services/user-service';
+import { response } from 'express';
 
 @Component({
   selector: 'app-user',
@@ -22,13 +23,26 @@ export class User implements OnInit, AfterViewInit {
 
   constructor(private userService: UserService) {}
 
-  async ngOnInit() {
+  async loadTable(){
     const users = await firstValueFrom(this.userService.verUsuarios());
     this.datasource.data = users;
+  }
+
+  async ngOnInit() {
+    this.loadTable()
   }
 
   ngAfterViewInit() {
     this.datasource.paginator = this.paginator;
     this.paginator.pageSize = 8; 
+  }
+
+  deleteUser(id_user:number){
+    this.userService.borrarUsuario(id_user).subscribe((response)=>{
+      console.log(response)
+      this.loadTable()
+    })
+
+
   }
 }

@@ -23,6 +23,11 @@ import {MatIcon} from '@angular/material/icon';
 import {provideNativeDateAdapter} from '@angular/material/core'
 import { NgModel } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { ChangeDetectorRef } from '@angular/core';
+
+
+
+
 type TabKey = 'all' | 'open' | 'closed';
 
 @Component({
@@ -63,7 +68,8 @@ export class Fichajes implements OnInit, AfterViewInit {
 
   constructor(
     private timeEntrieService: TimeEntrieService,
-    private userService: UserService
+    private userService: UserService,
+    private cdr:ChangeDetectorRef
   ) {}
 
   async ngOnInit() {
@@ -89,6 +95,7 @@ export class Fichajes implements OnInit, AfterViewInit {
     this.allRows = timeEntries.map((t: any) => ({
       id: t.id,
       usuario: this.associateUserId(t.user_id, users),
+      id_usuario:t.user_id,
       entrada: t.clock_in_at,
       salida: t.clock_out_at,
     }));
@@ -136,17 +143,51 @@ closeEdit(){
   this.isEditOpen = false;
 }
 
-timeEntrie:any = null;
+timeEntrie:any = null
+clock_in:any = null
+clock_out:any = null
+id_timeEntrie:number = 0
+id_user:number =0
 
 async openEdit(id:number){  
+  
   await this.getTimeEntrie(id)
+  this.id_timeEntrie = id
+  this.clock_in = this.toLocalDatetime(this.timeEntrie.clock_in_at);
+  this.clock_out = this.toLocalDatetime(this.timeEntrie.clock_out_at);
+  this.id_user =  this.timeEntrie.user_id
   this.isEditOpen=true;
+  this.cdr.detectChanges()
 }
 
 async getTimeEntrie(id:number){
-  await firstValueFrom(
-    this.timeEntrie = this.timeEntrieService.getTimeEntrieById(id)
+  this.timeEntrie = await firstValueFrom(
+    this.timeEntrieService.getTimeEntrieById(id)
   )
-  console.log(this.timeEntrie)
 }
+
+
+async editTimeEntrie() {
+  const timeEntrie = {
+    user_id: this.id_user,
+    clock_in_at: this.clock_in,
+    clock_out_at: this.clock_out,
+  };
+
+  await firstValueFrom(
+    this.timeEntrieService.updateTimeEntrie(this.id_timeEntrie, timeEntrie)
+  );
+
+  await this.loadTable();
+  this.applyTab(this.activeTab);
+  this.isEditOpen = false;
+}
+
+toLocalDatetime(value: string | null) {
+  if (!value) return null;
+  const d = new Date(value);
+  const pad = (n: number) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
 }
