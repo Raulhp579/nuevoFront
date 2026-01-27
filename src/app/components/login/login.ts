@@ -8,10 +8,18 @@ import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-login',
-  imports: [MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, RouterLink],
+  standalone: true,
+  imports: [
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    RouterLink
+  ],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
 export class Login {
-
+  hidePass = true;
 }

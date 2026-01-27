@@ -61,12 +61,12 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header-row"></tr>
-      <!-- ✅ sin trackBy (evita NG0303) -->
+
       <tr mat-row *matRowDef="let row; columns: displayedColumns" class="data-row"></tr>
 
     </table>
 
-    <!-- ✅ Paginador 8 en 8 -->
+
     <mat-paginator
       [pageSize]="8"
       [pageSizeOptions]="[8, 16, 24]"

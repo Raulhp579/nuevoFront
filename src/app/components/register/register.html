@@ -1,52 +1,65 @@
-<div class="login-page animate__animated animate__fadeIn">
-  <mat-card class="login-card">
-    <div class="brand">
-      <div class="brand-icon">
-        <mat-icon>person_add</mat-icon>
-      </div>
+<div class="auth-page animate__animated animate__fadeIn">
+  <mat-card class="auth-card">
+    <!-- Header oscuro (igual que login) -->
+    <div class="auth-hero">
+      <div class="hero-left">
+        <div class="hero-icon" aria-hidden="true">
+          <mat-icon>person_add</mat-icon>
+        </div>
 
-      <div class="brand-text">
-        <h1>Crear cuenta</h1>
-        <p>Regístrate para empezar</p>
+        <div class="hero-text">
+          <div class="hero-title">Crear cuenta</div>
+          <div class="hero-subtitle">Regístrate para empezar</div>
+
+          <a class="hero-link" routerLink="/login">¿Ya tienes cuenta? Inicia sesión</a>
+        </div>
       </div>
     </div>
 
-    <div class="form">
-      <mat-form-field appearance="outline" class="full">
-        <mat-label>Nombre</mat-label>
-        <input matInput type="text" autocomplete="name" />
-        <mat-icon matSuffix>badge</mat-icon>
-      </mat-form-field>
+    <!-- Body -->
+    <div class="auth-body">
+      <form class="form" autocomplete="on">
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Nombre</mat-label>
+          <input matInput type="text" autocomplete="name" />
+          <mat-icon matSuffix>badge</mat-icon>
+        </mat-form-field>
 
-      <mat-form-field appearance="outline" class="full">
-        <mat-label>Email</mat-label>
-        <input matInput type="email" autocomplete="email" />
-        <mat-icon matSuffix>mail</mat-icon>
-      </mat-form-field>
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" autocomplete="email" />
+          <mat-icon matSuffix>mail</mat-icon>
+        </mat-form-field>
 
-      <mat-form-field appearance="outline" class="full">
-        <mat-label>Contraseña</mat-label>
-        <input matInput type="password" autocomplete="new-password" />
-        <button mat-icon-button matSuffix type="button" aria-label="Mostrar contraseña">
-          <mat-icon>visibility</mat-icon>
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Contraseña</mat-label>
+          <input matInput type="password" autocomplete="new-password" />
+          <button mat-icon-button matSuffix type="button" aria-label="Mostrar contraseña">
+            <mat-icon>visibility</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Repetir contraseña</mat-label>
+          <input matInput type="password" autocomplete="new-password" />
+          <button mat-icon-button matSuffix type="button" aria-label="Mostrar contraseña">
+            <mat-icon>visibility</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <button mat-raised-button class="btn-primary full" type="button">
+          Crear cuenta
         </button>
-      </mat-form-field>
 
-      <mat-form-field appearance="outline" class="full">
-        <mat-label>Repetir contraseña</mat-label>
-        <input matInput type="password" autocomplete="new-password" />
-        <button mat-icon-button matSuffix type="button" aria-label="Mostrar contraseña">
-          <mat-icon>visibility</mat-icon>
+        <button mat-stroked-button class="btn-ghost full" type="button" routerLink="/login">
+          Ya tengo cuenta
         </button>
-      </mat-form-field>
 
-      <button mat-raised-button class="btn-primary full" type="button">
-        Crear cuenta
-      </button>
-
-      <button mat-stroked-button class="btn-ghost full" type="button" routerLink="/login">
-        Ya tengo cuenta
-      </button>
+        <div class="auth-footer">
+          <span>¿Problemas para registrarte?</span>
+          <a class="support" href="#">Contactar soporte</a>
+        </div>
+      </form>
     </div>
   </mat-card>
 </div>

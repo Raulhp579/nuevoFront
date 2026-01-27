@@ -1,39 +1,50 @@
 <div class="login-page animate__animated animate__fadeIn">
   <mat-card class="login-card">
-    <div class="brand">
+
+    <div class="card-header">
       <div class="brand-icon">
-        <mat-icon>person</mat-icon>
+        <mat-icon>lock</mat-icon>
       </div>
 
       <div class="brand-text">
-        <h1>Inicia Sesion</h1>
-        <a routerLink="/register">No tienes una cuenta?</a>
+        <h1 class="brand-title">Iniciar sesión</h1>
+        <p class="brand-sub">Accede al panel de Gestor Fichajes</p>
+        <a class="brand-link" routerLink="/register">¿No tienes cuenta? Crear una</a>
       </div>
     </div>
 
-    <div class="form">
-      <mat-form-field appearance="outline" class="full">
-        <mat-label>Email</mat-label>
-        <input matInput type="email" autocomplete="email" />
-        <mat-icon matSuffix>mail</mat-icon>
-      </mat-form-field>
+    <div class="card-body">
+      <div class="form">
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" autocomplete="email" />
+          <mat-icon matSuffix>mail</mat-icon>
+        </mat-form-field>
 
-      <mat-form-field appearance="outline" class="full">
-        <mat-label>Contraseña</mat-label>
-        <input matInput type="password" autocomplete="current-password" />
-        <button mat-icon-button matSuffix type="button" aria-label="Mostrar contraseña">
-          <mat-icon>visibility</mat-icon>
-        </button>
-      </mat-form-field>
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Contraseña</mat-label>
+          <input matInput [type]="hidePass ? 'password' : 'text'" autocomplete="current-password" />
+          <button mat-icon-button matSuffix type="button" (click)="hidePass = !hidePass" aria-label="Mostrar contraseña">
+            <mat-icon>{{ hidePass ? 'visibility' : 'visibility_off' }}</mat-icon>
+          </button>
+        </mat-form-field>
 
-      <button mat-raised-button class="btn-primary full" type="button">
-        Entrar
-      </button>
+        <div class="actions">
+          <button mat-raised-button class="btn-primary full" type="button">
+            Entrar
+          </button>
 
-      <button mat-stroked-button class="btn-ghost full" type="button" routerLink="/home">
-        Volver
-      </button>
+          <button mat-stroked-button class="btn-ghost full" type="button" routerLink="/home">
+            Volver
+          </button>
+        </div>
+      </div>
     </div>
+
+    <div class="card-footer">
+      <div class="mini">¿Problemas para entrar?</div>
+      <a class="help-link" routerLink="/home">Contactar soporte</a>
+    </div>
+
   </mat-card>
 </div>
-

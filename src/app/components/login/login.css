@@ -1,97 +1,277 @@
-/* Fondo igual que tu home */
+:host{
+  display:block;
+}
+
+/* En tu app, el padding ya lo pone .page (18px).
+   Aquí solo ajustamos el área para que se vea "centrado pero cercano" */
 .login-page{
-  min-height: calc(100vh - 64px);  /* por si tu header es fijo */
-  padding: 24px;
+  min-height: 100%;
   display: grid;
-  place-items: center;
-  background-color: rgb(246, 248, 252);
+  place-items: start center;      /* 🔥 arriba-centro, no centro absoluto */
+  padding: 18px 0 40px;           /* respeta tu layout */
+  background: transparent;        /* el fondo lo da la página */
 }
 
-/* Card principal */
+/* Card */
 .login-card{
-  width: 100%;
-  max-width: 420px;
+  width: min(520px, 100%);
   border-radius: 18px;
-  border: 1px solid rgb(226, 232, 240);
-  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.10);
-  padding: 18px 18px 12px;
+  border: 1px solid rgba(15,23,42,.10);
+  background: #fff;
+  box-shadow: 0 18px 40px rgba(15,23,42,.10);
+  overflow: hidden;
 }
 
-/* Cabecera del login */
-.brand{
+/* Header del card (más suave y menos "bloque") */
+.card-header{
+  padding: 16px 18px;
+  background: linear-gradient(180deg, #0f172a, #101b33);
+  border-bottom: 1px solid rgba(148,163,184,.16);
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 16px;
+  gap: 12px;
 }
 
 .brand-icon{
-  width: 52px;
-  height: 52px;
+  width: 46px;
+  height: 46px;
   border-radius: 16px;
   display: grid;
   place-items: center;
-
-  /* azul suave */
-  background-color: rgb(239, 246, 255);
-  border: 1px solid rgb(191, 219, 254);
-  color: rgb(24, 58, 138);
+  flex: 0 0 auto;
+  background: rgba(59,130,246,.18);
+  border: 1px solid rgba(59,130,246,.38);
+  color: rgba(255,255,255,.95);
 }
 
-.brand-text h1{
+.brand-text{
+  min-width: 0;
+}
+
+.brand-title{
   margin: 0;
-  font-size: 20px;
-  color: rgb(15, 23, 42);
-  font-weight: 800;
+  font-size: 16px;
+  font-weight: 950;
+  color: rgba(255,255,255,.92);
+  letter-spacing: .2px;
 }
 
-.brand-text p{
-  margin: 4px 0 0;
-  color: rgb(71, 85, 105);
-  font-weight: 500;
+.brand-sub{
+  margin: 3px 0 0;
+  font-size: 12.5px;
+  color: rgba(226,232,240,.72);
+  font-weight: 650;
+}
+
+.brand-link{
+  display: inline-flex;
+  margin-top: 6px;
+  font-weight: 850;
+  font-size: 13px;
+  color: rgba(147,197,253,.95);
+  text-decoration: none;
+}
+.brand-link:hover{ text-decoration: underline; }
+
+/* Body */
+.card-body{
+  padding: 18px;
 }
 
 /* Form */
 .form{
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 14px;
 }
 
-.full{
-  width: 100%;
+.full{ width: 100%; }
+
+/* Material fields: más "premium" (no se ven vacíos) */
+:host ::ng-deep .mat-mdc-form-field{
+  --mdc-outlined-text-field-container-shape: 14px;
 }
 
-/* Botón principal: azul corporativo */
+:host ::ng-deep .mdc-text-field--outlined{
+  background: rgba(2,6,23,.02);
+}
+
+:host ::ng-deep .mdc-notched-outline__leading,
+:host ::ng-deep .mdc-notched-outline__trailing{
+  border-color: rgba(15,23,42,.14) !important;
+}
+
+:host ::ng-deep .mdc-text-field--focused .mdc-notched-outline__leading,
+:host ::ng-deep .mdc-text-field--focused .mdc-notched-outline__trailing{
+  border-color: rgba(59,130,246,.70) !important;
+}
+
+:host ::ng-deep .mat-mdc-form-field-subscript-wrapper{
+  display: none; /* quita el espacio de hint/error si no lo usas */
+}
+
+/* Actions */
+.actions{
+  display: grid;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+/* Botón principal */
 .btn-primary{
-  border-radius: 12px !important;
   height: 44px;
-  background-color: rgb(24, 58, 138) !important;
-  color: rgb(255, 255, 255) !important;
-  box-shadow: 0 10px 20px rgba(24, 58, 138, 0.22) !important;
+  border-radius: 14px !important;
+  background: rgba(59,130,246,.95) !important;
+  color: #fff !important;
+  box-shadow: 0 12px 24px rgba(59,130,246,.22) !important;
+  font-weight: 950;
+  letter-spacing: .2px;
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
 }
-
 .btn-primary:hover{
-  background-color: rgb(16, 74, 158) !important;
+  transform: translateY(-1px);
+  background: rgba(37,99,235,.98) !important;
+  box-shadow: 0 16px 30px rgba(59,130,246,.30) !important;
 }
 
-.btn-primary:active{
-  background-color: rgb(12, 54, 120) !important;
-}
-
-/* Botón secundario */
+/* Secundario */
 .btn-ghost{
-  border-radius: 12px !important;
   height: 44px;
-  border-color: rgb(226, 232, 240) !important;
-  color: rgb(59, 93, 163) !important;
-  background-color: rgb(255, 255, 255) !important;
+  border-radius: 14px !important;
+  background: #fff !important;
+  border-color: rgba(15,23,42,.14) !important;
+  color: rgba(15,23,42,.86) !important;
+  font-weight: 900;
 }
-
 .btn-ghost:hover{
-  background-color: rgb(246, 248, 252) !important;
+  background: rgba(2,6,23,.02) !important;
 }
 
-a{
-    text-decoration: none   ;
+/* Footer más compacto */
+.card-footer{
+  padding: 12px 18px 14px;
+  border-top: 1px solid rgba(15,23,42,.06);
+  background: rgba(2,6,23,.01);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.mini{
+  font-size: 12.5px;
+  color: rgba(15,23,42,.60);
+  font-weight: 700;
+}
+
+.help-link{
+  font-size: 12.5px;
+  font-weight: 900;
+  color: rgba(37,99,235,.95);
+  text-decoration: none;
+}
+.help-link:hover{ text-decoration: underline; }
+
+/* Móvil */
+@media (max-width: 520px){
+  .login-page{ place-items: start stretch; }
+  .login-card{ width: 100%; }
+  .card-footer{ flex-direction: column; align-items: flex-start; }
+}
+/* ✅ ARREGLA bordes raros del outline (MDC) */
+:host ::ng-deep .mat-mdc-form-field{
+  --mdc-outlined-text-field-container-shape: 14px;
+}
+
+/* Fondo del input */
+:host ::ng-deep .mat-mdc-form-field .mdc-text-field--outlined{
+  background: rgba(2,6,23,.02) !important;
+}
+
+/* Borde normal: las 3 piezas + notch */
+:host ::ng-deep .mat-mdc-form-field .mdc-notched-outline__leading,
+:host ::ng-deep .mat-mdc-form-field .mdc-notched-outline__notch,
+:host ::ng-deep .mat-mdc-form-field .mdc-notched-outline__trailing{
+  border-color: rgba(15,23,42,.16) !important;
+  border-width: 1px !important;
+}
+
+/* Focus: mismo color en las 3 piezas */
+:host ::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+:host ::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+:host ::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing{
+  border-color: rgba(59,130,246,.75) !important;
+  border-width: 2px !important;
+}
+
+/* Hover: leve (opcional pero queda mejor) */
+:host ::ng-deep .mat-mdc-form-field:hover .mdc-notched-outline__leading,
+:host ::ng-deep .mat-mdc-form-field:hover .mdc-notched-outline__notch,
+:host ::ng-deep .mat-mdc-form-field:hover .mdc-notched-outline__trailing{
+  border-color: rgba(15,23,42,.22) !important;
+}
+
+/* Label y caret para que se vea fino */
+:host ::ng-deep .mat-mdc-form-field .mdc-floating-label{
+  color: rgba(15,23,42,.62) !important;
+}
+:host ::ng-deep .mat-mdc-form-field.mat-focused .mdc-floating-label{
+  color: rgba(37,99,235,.95) !important;
+}
+:host ::ng-deep .mat-mdc-form-field input{
+  caret-color: rgba(37,99,235,.95) !important;
+}
+
+/* Quita el espacio inferior de hints */
+:host ::ng-deep .mat-mdc-form-field-subscript-wrapper{
+  display: none;
+}
+/* ✅ FIX: quita la “barra” del outline a la izquierda (MDC notch) */
+:host ::ng-deep .mat-mdc-form-field{
+  --mdc-outlined-text-field-container-shape: 14px;
+}
+
+/* Fondo del campo */
+:host ::ng-deep .mat-mdc-form-field .mdc-text-field--outlined{
+  background: rgba(2,6,23,.02) !important;
+}
+
+/* IMPORTANTE: mismo grosor SIEMPRE (1px) en las 3 piezas */
+:host ::ng-deep .mat-mdc-form-field .mdc-notched-outline__leading,
+:host ::ng-deep .mat-mdc-form-field .mdc-notched-outline__notch,
+:host ::ng-deep .mat-mdc-form-field .mdc-notched-outline__trailing{
+  border-width: 1px !important;
+  border-color: rgba(15,23,42,.16) !important;
+}
+
+/* Hover: solo color */
+:host ::ng-deep .mat-mdc-form-field:hover .mdc-notched-outline__leading,
+:host ::ng-deep .mat-mdc-form-field:hover .mdc-notched-outline__notch,
+:host ::ng-deep .mat-mdc-form-field:hover .mdc-notched-outline__trailing{
+  border-color: rgba(15,23,42,.24) !important;
+}
+
+/* Focus: solo color + glow (sin cambiar grosor) */
+:host ::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+:host ::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+:host ::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing{
+  border-width: 1px !important;
+  border-color: rgba(59,130,246,.75) !important;
+}
+
+/* Glow sutil en focus para sensación premium */
+:host ::ng-deep .mat-mdc-form-field.mat-focused .mdc-text-field--outlined{
+  box-shadow: 0 0 0 3px rgba(59,130,246,.14) !important;
+}
+
+/* Label */
+:host ::ng-deep .mat-mdc-form-field .mdc-floating-label{
+  color: rgba(15,23,42,.62) !important;
+}
+:host ::ng-deep .mat-mdc-form-field.mat-focused .mdc-floating-label{
+  color: rgba(37,99,235,.95) !important;
+}
+
+/* Quita espacio inferior de hints */
+:host ::ng-deep .mat-mdc-form-field-subscript-wrapper{
+  display: none;
 }

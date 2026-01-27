@@ -35,4 +35,8 @@ export class TimeEntrieService {
   deleteTimeEntrie(id:number):Observable<any>{
     return this.http.delete(`${this.enlace}/${id}`,{headers:this.getHeaders()})
   }
+
+  getTimeEntrieById(id:number):Observable<any>{
+    return this.http.get(`${this.enlace}/${id}`,{headers:this.getHeaders()})
+  }
 }

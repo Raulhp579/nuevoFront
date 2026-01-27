@@ -5,15 +5,21 @@
 
   <div class="body">
     <div class="welcome-row">
-      <div>
-        <h1 class="welcome-title">Bienvenido, usuario</h1>
+      <div class="header-home">
+        <div class="left-space">
+          <h1 class="welcome-title">Bienvenido, usuario</h1>
 
-        <div class="status-row">
-          <span class="chip chip-success">
-            <span class="chip-dot"></span>
-            Fichado
-          </span>
-          <span class="status-text">Actualmente estás fichado.</span>
+          <div class="status-row">
+            <span class="chip chip-success">
+              <span class="chip-dot"></span>
+              Fichado
+            </span>
+            <span class="status-text">Actualmente estás fichado.</span>
+          </div>
+        </div>
+        <div class="right-space">
+          <h3>Fecha y hora actual:</h3>
+          <h4>{{ currentTime() | date: 'HH:mm:ss' }}</h4>
         </div>
       </div>
     </div>
@@ -35,13 +41,11 @@
           </div>
         </div>
 
-        <div class="card-main-right">
+        <div class="card-main-right animate__animated animate__tada">
           <div class="clock-circle">
             <mat-icon class="icono-reloj">schedule</mat-icon>
           </div>
-          <button class="btn-primary" type="button">
-            Fichar salida
-          </button>
+          <button class="btn-primary" type="button">Fichar salida</button>
         </div>
       </section>
 

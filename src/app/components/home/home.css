@@ -1,7 +1,7 @@
 /* Contenedor: pegado arriba */
 .contenedor{
-  margin-top: 0;                 /* 🔥 antes 50px */
-  background: transparent;       /* el fondo ya lo da .page */
+  margin-top: 0;                
+  background: transparent;       
 }
 
 /* Barra HOME (subheader) */
@@ -27,7 +27,7 @@
 
 /* Contenido */
 .body{
-  padding: 14px 0 0;            /* 🔥 menos aire arriba */
+  padding: 14px 0 0;           
 }
 
 /* Bienvenida */
@@ -138,8 +138,6 @@
   border-radius: 999px;
   display: grid;
   place-items: center;
-  background: radial-gradient(circle at 30% 30%, rgba(59,130,246,.10), rgba(2,6,23,.02));
-  border: 1px solid rgba(15,23,42,.08);
 }
 
 .icono-reloj{
@@ -215,7 +213,7 @@
 }
 
 .map{
-  aspect-ratio: 16 / 11;     /* 🔥 tamaño estable para futuro mapa */
+  aspect-ratio: 16 / 11;    
   width: 100%;
   display: grid;
   place-items: center;
@@ -289,11 +287,11 @@
 
 .card-main,
 .card-side{
-  min-height: 280px;             /* prueba 280 / 300 según te guste */
+  min-height: 280px;            
 }
 .card-side{
   padding: 16px;
-  display: flex;                 /* 🔥 para estirar el mapa */
+  display: flex;               
   flex-direction: column;
 }
 .map-wrap{
@@ -303,16 +301,78 @@
   background: linear-gradient(180deg, rgba(248,250,252,1), rgba(241,245,249,1));
   overflow: hidden;
 
-  flex: 1;                       /* 🔥 ocupa el hueco restante */
+  flex: 1;                       
   display: flex;
 }
 
 .map{
   width: 100%;
-  height: 100%;                  /* 🔥 rellena altura */
+  height: 100%;                  
   display: grid;
   place-items: center;
   position: relative;
 
-  aspect-ratio: auto;            /* 🔥 quita el ratio fijo */
+  aspect-ratio: auto;           
+}
+
+.right-space{
+  text-align: right;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.header-home{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+/* Reloj bonito (pill) */
+.right-space{
+  margin-left: auto;
+  width: auto;                 /* 👈 quita el 100% */
+  text-align: right;
+
+  padding: 10px 14px;
+  border: 1px solid rgb(226, 232, 240);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(248,250,252,1), rgba(255,255,255,1));
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.06);
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.right-space h3{
+  margin: 0;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgb(100, 116, 139);
+}
+
+/* números “pro” (no bailan) */
+.right-space h4{
+  margin: 0;
+  font-size: 22px;
+  font-weight: 950;
+  color: rgb(15, 23, 42);
+  font-variant-numeric: tabular-nums;
+}
+
+/* detalle opcional: punto “live” sin tocar HTML */
+.right-space h3::before{
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgb(22, 163, 74);
+  display: inline-block;
+  margin-right: 8px;
+  box-shadow: 0 0 0 4px rgba(22, 163, 74, .15);
+  vertical-align: middle;
 }
