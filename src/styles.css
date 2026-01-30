@@ -24,15 +24,28 @@ body {
   box-shadow: var(--focus-ring, 0 0 0 3px rgba(59, 130, 246, 0.35));
 }
 
-/* Botones y elementos interactivos */
+/* Botones y elementos interactivos (excluyendo inputs de Material) */
 button:focus-visible,
 a:focus-visible,
-input:focus-visible,
 select:focus-visible,
-textarea:focus-visible,
 [tabindex]:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring, 0 0 0 3px rgba(59, 130, 246, 0.35));
+}
+
+/* Inputs y textareas fuera de Material */
+input:focus-visible:not(.mat-mdc-input-element),
+textarea:focus-visible:not(.mat-mdc-input-element) {
+  outline: none;
+  box-shadow: var(--focus-ring, 0 0 0 3px rgba(59, 130, 246, 0.35));
+}
+
+/* Los inputs de Material manejan su propio focus */
+.mat-mdc-form-field input:focus-visible,
+.mat-mdc-form-field textarea:focus-visible,
+.mat-mdc-input-element:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 /* Override para inputs de Material que ya tienen su propio estilo */

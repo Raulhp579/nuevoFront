@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:deploy": "ng build && xcopy /E /Y /I dist\\nuevoFront\\browser\\* ..\\public\\",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:nuevoFront": "node dist/nuevoFront/server/server.mjs"
