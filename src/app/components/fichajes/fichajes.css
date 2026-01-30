@@ -1,8 +1,8 @@
-.table-shell{
+.table-shell {
   margin-top: 18px;
 }
 
-.table-head{
+.table-head {
   display: flex;
   align-items: end;
   justify-content: space-between;
@@ -10,83 +10,88 @@
   margin: 6px 2px 12px;
 }
 
-.table-title .kicker{
+.table-title .kicker {
   font-size: 12px;
-  letter-spacing: .12em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(15,23,42,.55);
+  color: var(--text-secondary, rgba(15, 23, 42, 0.7));
 }
 
-.table-title .h1{
+.table-title .h1 {
   font-size: 18px;
   font-weight: 850;
-  color: rgba(15,23,42,.92);
+  color: rgba(15, 23, 42, 0.92);
   margin-top: 2px;
 }
 
-.table-actions .hint{
+.table-actions .hint {
   font-size: 13px;
-  color: rgba(15,23,42,.60);
+  color: rgba(15, 23, 42, 0.6);
 }
 
 /* Card */
-.table-card{
+.table-card {
   border-radius: 16px;
-  border: 1px solid rgba(15,23,42,.08);
+  border: 1px solid rgba(15, 23, 42, 0.08);
   background: #ffffff;
   overflow: hidden;
 }
 
 /* Tabla */
-.mat-table{
+.mat-table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
 }
 
 /* Header sticky + look moderno */
-.header-row th.mat-mdc-header-cell{
+.header-row th.mat-mdc-header-cell {
   position: sticky;
   top: 0;
   z-index: 2;
 
   background: linear-gradient(180deg, #f8fafc, #f2f5fb);
-  color: rgba(15,23,42,.72);
+  color: rgba(15, 23, 42, 0.72);
   font-size: 12px;
   font-weight: 800;
-  letter-spacing: .08em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 
-  border-bottom: 1px solid rgba(15,23,42,.10);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.1);
 }
 
 /* Celdas */
 th.mat-mdc-header-cell,
-td.mat-mdc-cell{
+td.mat-mdc-cell {
   padding: 14px 16px;
 }
 
-td.mat-mdc-cell{
-  border-bottom: 1px solid rgba(15,23,42,.06);
-  color: rgba(15,23,42,.86);
+td.mat-mdc-cell {
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  color: rgba(15, 23, 42, 0.86);
   font-size: 14px;
 }
 
 /* Zebra + hover */
-.data-row:nth-child(even) td.mat-mdc-cell{
-  background: rgba(2,6,23,.015);
+.data-row:nth-child(even) td.mat-mdc-cell {
+  background: rgba(2, 6, 23, 0.015);
 }
 
-.data-row:hover td.mat-mdc-cell{
-  background: rgba(59,130,246,.06);
+.data-row:hover td.mat-mdc-cell {
+  background: rgba(59, 130, 246, 0.06);
 }
 
 /* Column sizes */
-.col-id{ width: 90px; }
-.col-actions{ width: 120px; text-align: right; }
+.col-id {
+  width: 90px;
+}
+.col-actions {
+  width: 120px;
+  text-align: right;
+}
 
 /* Pills / chips */
-.id-pill{
+.id-pill {
   display: inline-flex;
   align-items: center;
   height: 28px;
@@ -94,11 +99,11 @@ td.mat-mdc-cell{
   border-radius: 999px;
   font-weight: 800;
   font-size: 12px;
-  background: rgba(15,23,42,.06);
-  border: 1px solid rgba(15,23,42,.08);
+  background: rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(15, 23, 42, 0.08);
 }
 
-.chip{
+.chip {
   display: inline-flex;
   align-items: center;
   height: 28px;
@@ -108,32 +113,32 @@ td.mat-mdc-cell{
   font-size: 12px;
   border: 1px solid transparent;
 }
-.chip--warn{
-  background: rgba(245,158,11,.14);
-  border-color: rgba(245,158,11,.30);
-  color: rgba(120,53,15,.95);
+.chip--warn {
+  background: rgba(245, 158, 11, 0.14);
+  border-color: rgba(245, 158, 11, 0.3);
+  color: rgba(120, 53, 15, 0.95);
 }
 
 /* User cell */
-.user-cell{
+.user-cell {
   display: flex;
   align-items: center;
   gap: 10px;
   min-width: 0;
 }
 
-.avatar{
+.avatar {
   width: 32px;
   height: 32px;
   border-radius: 12px;
   display: grid;
   place-items: center;
   font-weight: 900;
-  color: rgba(255,255,255,.95);
-  background: rgba(59,130,246,.85);
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(59, 130, 246, 0.85);
 }
 
-.user-name{
+.user-name {
   font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
@@ -141,192 +146,206 @@ td.mat-mdc-cell{
 }
 
 /* Date cell */
-.date-cell{
+.date-cell {
   display: grid;
   line-height: 1.1;
   gap: 2px;
 }
-.date-main{
+.date-main {
   font-weight: 750;
 }
-.date-sub{
+.date-sub {
   font-size: 12px;
-  color: rgba(15,23,42,.55);
+  color: var(--text-secondary, rgba(15, 23, 42, 0.7));
 }
 
 /* Actions */
-.row-actions{
+.row-actions {
   display: flex;
   justify-content: flex-end;
   gap: 8px;
 }
 
-.icon-btn{
+.icon-btn {
   width: 40px;
   height: 40px;
   border-radius: 14px;
-  border: 1px solid rgba(15,23,42,.10);
-  background: rgba(15,23,42,.04);
-  transition: transform .12s ease, background .12s ease, border-color .12s ease;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: rgba(15, 23, 42, 0.04);
+  transition:
+    transform 0.12s ease,
+    background 0.12s ease,
+    border-color 0.12s ease;
 }
 
-.icon-btn:hover{
+.icon-btn:hover {
   transform: translateY(-1px);
-  background: rgba(15,23,42,.06);
-  border-color: rgba(15,23,42,.16);
+  background: rgba(15, 23, 42, 0.06);
+  border-color: rgba(15, 23, 42, 0.16);
 }
 
-.icon-btn--edit{
-  background: rgba(59,130,246,.12);
-  border-color: rgba(59,130,246,.25);
+.icon-btn--edit {
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.25);
 }
-.icon-btn--edit mat-icon{ color: rgba(29,78,216,.95); }
+.icon-btn--edit mat-icon {
+  color: rgba(29, 78, 216, 0.95);
+}
 
-.icon-btn--delete{
-  background: rgba(239,68,68,.12);
-  border-color: rgba(239,68,68,.25);
+.icon-btn--delete {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.25);
 }
-.icon-btn--delete mat-icon{ color: rgba(185,28,28,.95); }
+.icon-btn--delete mat-icon {
+  color: rgba(185, 28, 28, 0.95);
+}
 
 /* Empty */
-.empty{
+.empty {
   padding: 24px 18px;
   text-align: center;
-  border-top: 1px solid rgba(15,23,42,.06);
-  background: rgba(2,6,23,.01);
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  background: rgba(2, 6, 23, 0.01);
 }
-.empty-title{
+.empty-title {
   font-weight: 850;
-  color: rgba(15,23,42,.88);
+  color: rgba(15, 23, 42, 0.88);
 }
-.empty-sub{
+.empty-sub {
   margin-top: 4px;
   font-size: 13px;
-  color: rgba(15,23,42,.60);
+  color: var(--text-secondary, rgba(15, 23, 42, 0.7));
 }
 
 /* Responsive: en pantallas pequeñas, que respire */
-@media (max-width: 720px){
+@media (max-width: 720px) {
   th.mat-mdc-header-cell,
-  td.mat-mdc-cell{
+  td.mat-mdc-cell {
     padding: 12px 12px;
   }
-  .col-actions{ width: 96px; }
+  .col-actions {
+    width: 96px;
+  }
 }
-.tabs{
+.tabs {
   margin: 6px 0 10px;
 }
 
-mat-paginator{
-  border-top: 1px solid rgba(15,23,42,.06);
+mat-paginator {
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
   background: #fff;
 }
 
-
-:host{ display:block; }
+:host {
+  display: block;
+}
 
 /* Card como modal */
-.modal-card{
+.modal-card {
   width: min(560px, 92vw);
   border-radius: 18px;
   overflow: hidden;
-  border: 1px solid rgba(15,23,42,.10);
-  box-shadow: 0 18px 44px rgba(2,6,23,.22);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  box-shadow: 0 18px 44px rgba(2, 6, 23, 0.22);
   z-index: 1000;
 }
 
 /* Header */
-.modal-head{
+.modal-head {
   padding: 16px 16px 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   background: linear-gradient(180deg, #0f172a, #111c33);
-  color: rgba(255,255,255,.92);
+  color: rgba(255, 255, 255, 0.92);
 }
 
-.head-left{
+.head-left {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.head-icon{
+.head-icon {
   width: 44px;
   height: 44px;
   border-radius: 16px;
   display: grid;
   place-items: center;
-  background: rgba(59,130,246,.18);
-  border: 1px solid rgba(59,130,246,.40);
+  background: rgba(59, 130, 246, 0.18);
+  border: 1px solid rgba(59, 130, 246, 0.4);
 }
 
-.head-icon mat-icon{
-  color: rgba(255,255,255,.92);
+.head-icon mat-icon {
+  color: rgba(255, 255, 255, 0.92);
 }
 
-.head-text mat-card-title{
+.head-text mat-card-title {
   font-weight: 900;
-  letter-spacing: .2px;
+  letter-spacing: 0.2px;
   margin: 0;
 }
 
-.head-text mat-card-subtitle{
+.head-text mat-card-subtitle {
   margin: 2px 0 0;
-  color: rgba(226,232,240,.75);
+  color: rgba(226, 232, 240, 0.75);
 }
 
-.close-btn{
+.close-btn {
   width: 40px;
   height: 40px;
   border-radius: 14px;
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
 }
-.close-btn mat-icon{ color: rgba(255,255,255,.92); }
+.close-btn mat-icon {
+  color: rgba(255, 255, 255, 0.92);
+}
 
 /* Body */
-.modal-body{
+.modal-body {
   padding: 18px;
   background: #fff;
 }
 
-.form-grid{
+.form-grid {
   display: grid;
   gap: 14px;
 }
 
-.full{ width: 100%; }
+.full {
+  width: 100%;
+}
 
 /* Hint */
-.hint{
+.hint {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 10px 12px;
   border-radius: 14px;
-  background: rgba(2,6,23,.03);
-  border: 1px solid rgba(15,23,42,.08);
-  color: rgba(15,23,42,.70);
+  background: rgba(2, 6, 23, 0.03);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  color: rgba(15, 23, 42, 0.7);
   font-weight: 600;
   font-size: 13px;
 }
-.hint mat-icon{
+.hint mat-icon {
   font-size: 18px;
   width: 18px;
   height: 18px;
 }
 
 /* Actions */
-.modal-actions{
+.modal-actions {
   padding: 0 18px 18px;
   gap: 10px;
   background: #fff;
 }
 
 /* Botones (alineados al estilo que usas) */
-.btn-primary{
+.btn-primary {
   border-radius: 12px !important;
   height: 44px;
   background-color: rgb(24, 58, 138) !important;
@@ -334,7 +353,7 @@ mat-paginator{
   box-shadow: 0 10px 20px rgba(24, 58, 138, 0.22) !important;
 }
 
-.btn-ghost{
+.btn-ghost {
   border-radius: 12px !important;
   height: 44px;
   border-color: rgb(226, 232, 240) !important;
@@ -343,12 +362,12 @@ mat-paginator{
 }
 
 /* Quita el “barrita rara” del outline en algunos temas */
-:host ::ng-deep .mat-mdc-form-field .mdc-notched-outline__leading{
+:host ::ng-deep .mat-mdc-form-field .mdc-notched-outline__leading {
   border-right: 0 !important;
 }
 
 /* Overlay centrado */
-.modal-overlay{
+.modal-overlay {
   position: fixed;
   inset: 0;
   z-index: 2000;
@@ -357,7 +376,7 @@ mat-paginator{
   place-items: center;
 
   padding: 18px;
-  background: rgba(2, 6, 23, .55);
+  background: rgba(2, 6, 23, 0.55);
   backdrop-filter: blur(6px);
 
   /* si la tarjeta es alta, que permita scroll del overlay */
@@ -366,14 +385,13 @@ mat-paginator{
 }
 
 /* Card como modal (tu estilo, pero ahora centrada) */
-.modal-card{
+.modal-card {
   width: min(560px, 92vw);
   border-radius: 18px;
   overflow: hidden;
-  border: 1px solid rgba(15,23,42,.10);
-  box-shadow: 0 18px 44px rgba(2,6,23,.22);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  box-shadow: 0 18px 44px rgba(2, 6, 23, 0.22);
 
   /* para que no se pegue arriba cuando hay scroll */
   margin: auto;
 }
- 

@@ -1,10 +1,66 @@
-@import "animate.css/animate.min.css";
+@import 'animate.css/animate.min.css';
 
-* { box-sizing: border-box; }
+/* Sistema de variables CSS global */
+@import './app/variables.css';
 
-html, body {
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
   height: 100%;
   margin: 0;
   overflow-x: hidden;
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   ACCESIBILIDAD - Focus Visible Global
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Focus visible para navegación por teclado */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring, 0 0 0 3px rgba(59, 130, 246, 0.35));
+}
+
+/* Botones y elementos interactivos */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring, 0 0 0 3px rgba(59, 130, 246, 0.35));
+}
+
+/* Override para inputs de Material que ya tienen su propio estilo */
+.mat-mdc-form-field:focus-within {
+  outline: none;
+}
+
+/* Botones de icono */
+.mat-mdc-icon-button:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring, 0 0 0 3px rgba(59, 130, 246, 0.35));
+  border-radius: var(--radius-md, 14px);
+}
+
+/* Skip link para accesibilidad (oculto visualmente pero accesible) */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  background: var(--color-primary, rgb(59, 130, 246));
+  color: white;
+  padding: 8px 16px;
+  z-index: 9999;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 0 0 8px 0;
+}
+
+.skip-link:focus {
+  top: 0;
+}

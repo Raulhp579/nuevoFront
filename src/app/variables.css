@@ -1,0 +1,146 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   GESTOR FICHAJES - Sistema de Variables CSS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ─────────────────────────────────────────────────────────────────────────
+     COLORES PRIMARIOS
+     ───────────────────────────────────────────────────────────────────────── */
+
+  /* Azul principal (accent) */
+  --color-primary: rgb(59, 130, 246);
+  --color-primary-hover: rgb(37, 99, 235);
+  --color-primary-light: rgba(59, 130, 246, 0.16);
+  --color-primary-border: rgba(59, 130, 246, 0.35);
+  --color-primary-glow: rgba(59, 130, 246, 0.22);
+
+  /* Azul oscuro (backgrounds) */
+  --color-dark: #0f172a;
+  --color-dark-secondary: #111c33;
+  --color-dark-tertiary: #0b1220;
+
+  /* Slate (texto y bordes) */
+  --color-slate-900: rgb(15, 23, 42);
+  --color-slate-700: rgb(51, 65, 85);
+  --color-slate-500: rgb(100, 116, 139);
+  --color-slate-400: rgb(148, 163, 184);
+  --color-slate-200: rgb(226, 232, 240);
+  --color-slate-100: rgb(241, 245, 249);
+  --color-slate-50: rgb(248, 250, 252);
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     COLORES DE ESTADO
+     ───────────────────────────────────────────────────────────────────────── */
+
+  /* Success (verde) */
+  --color-success: rgb(22, 163, 74);
+  --color-success-bg: rgb(220, 252, 231);
+  --color-success-border: rgb(134, 239, 172);
+
+  /* Warning (amarillo/naranja) */
+  --color-warning: rgb(245, 158, 11);
+  --color-warning-bg: rgba(245, 158, 11, 0.14);
+  --color-warning-border: rgba(245, 158, 11, 0.3);
+  --color-warning-text: rgb(120, 53, 15);
+
+  /* Error/Danger (rojo) */
+  --color-error: rgb(239, 68, 68);
+  --color-error-dark: rgb(185, 28, 28);
+  --color-error-bg: rgba(239, 68, 68, 0.12);
+  --color-error-border: rgba(239, 68, 68, 0.25);
+  --color-danger: rgb(220, 53, 69);
+  --color-danger-hover: rgb(176, 42, 55);
+  --color-danger-glow: rgba(220, 53, 69, 0.28);
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     TEXTO (con contrastes WCAG AA)
+     ───────────────────────────────────────────────────────────────────────── */
+
+  /* Texto oscuro sobre fondo claro */
+  --text-primary: rgba(15, 23, 42, 0.92);
+  --text-secondary: rgba(15, 23, 42, 0.7); /* Mejorado de .55 a .70 */
+  --text-tertiary: rgba(15, 23, 42, 0.55);
+  --text-muted: rgba(15, 23, 42, 0.45);
+
+  /* Texto claro sobre fondo oscuro */
+  --text-light-primary: rgba(255, 255, 255, 0.92);
+  --text-light-secondary: rgba(226, 232, 240, 0.8); /* Mejorado de .70 a .80 */
+  --text-light-tertiary: rgba(226, 232, 240, 0.6);
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     TIPOGRAFÍA
+     ───────────────────────────────────────────────────────────────────────── */
+
+  /* Font weights estandarizados */
+  --font-normal: 500;
+  --font-medium: 600;
+  --font-semibold: 700;
+  --font-bold: 800;
+  --font-extrabold: 900;
+
+  /* Tamaños de fuente */
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-base: 14px;
+  --text-md: 15px;
+  --text-lg: 16px;
+  --text-xl: 18px;
+  --text-2xl: 22px;
+  --text-3xl: 36px;
+  --text-4xl: 42px;
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     ESPACIADO
+     ───────────────────────────────────────────────────────────────────────── */
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 18px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     BORDES Y RADIOS
+     ───────────────────────────────────────────────────────────────────────── */
+
+  --radius-sm: 12px;
+  --radius-md: 14px;
+  --radius-lg: 16px;
+  --radius-xl: 18px;
+  --radius-full: 999px;
+
+  /* Bordes sutiles */
+  --border-light: 1px solid rgba(15, 23, 42, 0.08);
+  --border-medium: 1px solid rgba(15, 23, 42, 0.14);
+  --border-slate: 1px solid rgb(226, 232, 240);
+  --border-dark: 1px solid rgba(148, 163, 184, 0.18);
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     SOMBRAS
+     ───────────────────────────────────────────────────────────────────────── */
+
+  --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 10px 22px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 14px 30px rgba(15, 23, 42, 0.1);
+  --shadow-xl: 0 18px 40px rgba(15, 23, 42, 0.12);
+  --shadow-dark: 0 10px 28px rgba(2, 6, 23, 0.35);
+  --shadow-modal: 0 18px 44px rgba(2, 6, 23, 0.22);
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     TRANSICIONES
+     ───────────────────────────────────────────────────────────────────────── */
+
+  --transition-fast: 0.12s ease;
+  --transition-normal: 0.15s ease;
+  --transition-slow: 0.25s ease;
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     FOCUS VISIBLE (Accesibilidad)
+     ───────────────────────────────────────────────────────────────────────── */
+
+  --focus-ring: 0 0 0 3px rgba(59, 130, 246, 0.35);
+  --focus-ring-error: 0 0 0 3px rgba(239, 68, 68, 0.25);
+}
