@@ -1,6 +1,5 @@
 <div class="login-page animate__animated animate__fadeIn">
   <mat-card class="login-card">
-
     <div class="card-header">
       <div class="brand-icon">
         <mat-icon>lock</mat-icon>
@@ -14,23 +13,52 @@
     </div>
 
     <div class="card-body">
-      <div class="form">
+      <form class="form" [formGroup]="loginForm">
         <mat-form-field appearance="outline" class="full">
           <mat-label>Email</mat-label>
-          <input matInput type="email" autocomplete="email" />
+          <input matInput type="email" autocomplete="email" formControlName="email" name="email" />
           <mat-icon matSuffix>mail</mat-icon>
+
+          @if (loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched) {
+            <mat-error>El email es obligatorio</mat-error>
+          }
+          @if (loginForm.get('email')?.hasError('email')) {
+            <mat-error>Introduce un email válido</mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full">
           <mat-label>Contraseña</mat-label>
-          <input matInput [type]="hidePass ? 'password' : 'text'" autocomplete="current-password" />
-          <button mat-icon-button matSuffix type="button" (click)="hidePass = !hidePass" aria-label="Mostrar contraseña">
+          <input
+            matInput
+            [type]="hidePass ? 'password' : 'text'"
+            autocomplete="current-password"
+            formControlName="password"
+            name="password"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            type="button"
+            (click)="hidePass = !hidePass"
+            aria-label="Mostrar contraseña"
+          >
             <mat-icon>{{ hidePass ? 'visibility' : 'visibility_off' }}</mat-icon>
           </button>
+
+          @if (loginForm.get('password')?.hasError('required')) {
+            <mat-error>La contraseña es obligatoria</mat-error>
+          }
         </mat-form-field>
 
         <div class="actions">
-          <button mat-raised-button class="btn-primary full" type="button">
+          <button
+            [disabled]="loginForm.invalid"
+            mat-raised-button
+            class="btn-primary full"
+            type="button"
+            (click)="onSubmit()"
+          >
             Entrar
           </button>
 
@@ -38,13 +66,12 @@
             Volver
           </button>
         </div>
-      </div>
+      </form>
     </div>
 
     <div class="card-footer">
       <div class="mini">¿Problemas para entrar?</div>
       <a class="help-link" routerLink="/home">Contactar soporte</a>
     </div>
-
   </mat-card>
 </div>

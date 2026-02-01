@@ -8,14 +8,23 @@
       <div class="header-home">
         <div class="left-space">
           <h1 class="welcome-title">Bienvenido, usuario</h1>
-
-          <div class="status-row">
-            <span class="chip chip-success">
-              <span class="chip-dot"></span>
-              Fichado
-            </span>
-            <span class="status-text">Actualmente estás fichado.</span>
-          </div>
+          @if (working) {
+            <div class="status-row">
+              <span class="chip chip-red">
+                <span class="chip-dot"></span>
+                Fichado
+              </span>
+              <span class="status-text">Actualmente estás fichado.</span>
+            </div>
+          } @else {
+            <div class="status-row">
+              <span class="chip chip-success">
+                <span class="chip-dot"></span>
+                Sin Fichar
+              </span>
+              <span class="status-text">Actualmente no estás fichado.</span>
+            </div>
+          }
         </div>
         <div class="right-space">
           <h3>Fecha y hora actual:</h3>
@@ -26,46 +35,66 @@
 
     <div class="grid-home">
       <!-- Card principal -->
-      <section class="card card-main">
-        <div class="card-main-left">
-          <div class="metric">
-            <div class="metric-label">Hora de entrada</div>
-            <div class="metric-value">08:30 AM</div>
+      @if (working) {
+        <section class="card card-main">
+          <div class="card-main-left">
+            <div class="metric">
+              <div class="metric-label">Hora de entrada</div>
+              <div class="metric-value">{{ infoTime }}</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="metric">
+              <div class="metric-label">Tiempo trabajado</div>
+              <div class="metric-value">{{ timerDisplay }}</div>
+            </div>
           </div>
 
-          <div class="divider"></div>
-
-          <div class="metric">
-            <div class="metric-label">Tiempo trabajado</div>
-            <div class="metric-value">02h 30m</div>
+          <div class="card-main-right animate__animated animate__pulse">
+            <div class="clock-circle">
+              <mat-icon class="icono-reloj-rojo">schedule</mat-icon>
+            </div>
+            <button class="btn-primary-red" type="button" (click)="inOut()">Fichar salida</button>
           </div>
-        </div>
+        </section>
+      } @else {
+        <section class="card card-main">
+          <div class="card-main-left">
+            <div class="metric">
+              <div class="metric-label">Hora de salida</div>
+              <div class="metric-value">{{ infoTime }}</div>
+            </div>
 
-        <div class="card-main-right animate__animated animate__pulse">
-          <div class="clock-circle">
-            <mat-icon class="icono-reloj">schedule</mat-icon>
+            <div class="divider"></div>
+
+            <div class="metric">
+              <div class="metric-label">Tiempo trabajado</div>
+              <div class="metric-value">{{ timerDisplay }}</div>
+            </div>
           </div>
-          <button class="btn-primary" type="button">Fichar salida</button>
-        </div>
-      </section>
+
+          <div class="card-main-right animate__animated animate__pulse">
+            <div class="clock-circle">
+              <mat-icon class="icono-reloj-verde">schedule</mat-icon>
+            </div>
+            <button class="btn-primary-green" type="button" (click)="inOut()">
+              Fichar Entrada
+            </button>
+          </div>
+        </section>
+      }
 
       <!-- Card derecha: MAPA futuro -->
       <aside class="card card-side">
         <div class="card-head">
           <div>
             <h3 class="card-title">Ubicación</h3>
-            <div class="card-sub">Aquí irá un mapa</div>
           </div>
-          <a class="link" href="#">Configurar</a>
         </div>
 
         <div class="map-wrap">
-          <div class="map">
-            <div class="map-inner">
-              <div class="map-title">Mapa (próximamente)</div>
-              <div class="map-hint">Reserva este espacio para Google Maps / Leaflet</div>
-            </div>
-          </div>
+          <app-mapa></app-mapa>
         </div>
       </aside>
 

@@ -10,11 +10,13 @@ export class TimeEntrieService {
   private enlace:string = "http://127.0.0.1:8000/api/timeEntrie"
 
   private getHeaders():HttpHeaders{
-/*     const token = sessionStorage.getItem("token") */
+    const token = localStorage.getItem("token")
     return new HttpHeaders({
       'Content-Type':'application/json',
-      /* 'Authorization': `Bearer ${token}` */
+      'Authorization': `Bearer ${token}`,
+      'Accept': '*/*'
     })
+
   }
 
   constructor(private http:HttpClient){}

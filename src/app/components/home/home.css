@@ -73,6 +73,12 @@
   border-color: rgb(134, 239, 172);
 }
 
+.chip-red {
+  background-color: rgb(254, 226, 226);
+  color: rgb(220, 53, 69);
+  border-color: rgb(252, 165, 165);
+}
+
 .grid-home {
   margin-top: 18px;
   display: grid;
@@ -139,15 +145,22 @@
   place-items: center;
 }
 
-.icono-reloj {
+.icono-reloj-rojo {
   font-size: 120px;
   width: 120px;
   height: 120px;
   color: rgb(220, 53, 69);
 }
 
+.icono-reloj-verde {
+  font-size: 120px;
+  width: 120px;
+  height: 120px;
+  color: rgb(25, 225, 158);
+}
+
 /* Botón principal */
-.btn-primary {
+.btn-primary-red {
   height: 44px;
   padding: 0 18px;
   border-radius: 14px;
@@ -158,10 +171,19 @@
   color: rgb(255, 255, 255);
   background: rgb(220, 53, 69);
   box-shadow: 0 10px 20px rgba(220, 53, 69, 0.28);
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease,
-    background-color 0.15s ease;
+}
+
+.btn-primary-green {
+  height: 44px;
+  padding: 0 18px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 900;
+  cursor: pointer;
+  border: none;
+  color: rgb(255, 255, 255);
+  background: rgb(25, 225, 158);
+  box-shadow: 0 10px 20px rgba(36, 138, 79, 0.28);
 }
 
 .btn-primary:hover {
