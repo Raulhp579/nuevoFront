@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, PLATFORM_ID, inject } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 @Component({
@@ -8,11 +8,11 @@ import { isPlatformBrowser } from '@angular/common';
   templateUrl: './mapa.component.html',
   styleUrls: ['./mapa.component.css'],
 })
-export class MapaComponent implements OnInit, OnDestroy {
+export class MapaComponent implements AfterViewInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
   private map: any;
 
-  ngOnInit() {
+  ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
       this.initMap();
     }
@@ -21,6 +21,7 @@ export class MapaComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.map) {
       this.map.remove();
+      this.map = null; // Clean up reference
     }
   }
 
@@ -61,6 +62,9 @@ export class MapaComponent implements OnInit, OnDestroy {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
+          // Check if map still exists (component might be destroyed)
+          if (!this.map) return;
+
           const { latitude, longitude } = position.coords;
 
           // Marcador de tu ubicación actual (Icono por defecto - Azul)

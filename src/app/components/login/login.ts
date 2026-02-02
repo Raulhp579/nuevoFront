@@ -22,7 +22,7 @@ import { MatError } from '@angular/material/form-field';
     MatIconModule,
     RouterLink,
     ReactiveFormsModule,
-    MatError
+    MatError,
   ],
   templateUrl: './login.html',
   styleUrl: './login.css',
@@ -50,7 +50,7 @@ export class Login {
       const response = await firstValueFrom(this.authService.login(user));
 
       localStorage.setItem('token', response.token || response);
-      this.router.navigate(['/fichajes']);
+      this.router.navigate(['/home']);
     } catch (error) {
       console.error('Error en login:', error);
     }

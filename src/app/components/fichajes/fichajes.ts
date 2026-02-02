@@ -1,4 +1,10 @@
-import { Component, OnInit, AfterViewInit, ViewChild,ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { DatePipe, NgClass } from '@angular/common';
 
@@ -11,22 +17,19 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { TimeEntrieService } from '../../services/time-entrie-service';
 import { UserService } from '../../services/user-service';
 
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatCardModule} from '@angular/material/card';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 
-import {MatTimepickerModule} from '@angular/material/timepicker';
-import {MatIcon} from '@angular/material/icon';
-import {provideNativeDateAdapter} from '@angular/material/core'
+import { MatTimepickerModule } from '@angular/material/timepicker';
+import { MatIcon } from '@angular/material/icon';
+import { provideNativeDateAdapter } from '@angular/material/core';
 import { NgModel } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ChangeDetectorRef } from '@angular/core';
-
-
-
 
 type TabKey = 'all' | 'open' | 'closed';
 
@@ -49,9 +52,8 @@ type TabKey = 'all' | 'open' | 'closed';
     MatInputModule,
     MatTimepickerModule,
     MatIcon,
-    FormsModule
-    
-],
+    FormsModule,
+  ],
   templateUrl: './fichajes.html',
   styleUrl: './fichajes.css',
 })
@@ -69,7 +71,7 @@ export class Fichajes implements OnInit, AfterViewInit {
   constructor(
     private timeEntrieService: TimeEntrieService,
     private userService: UserService,
-    private cdr:ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
   ) {}
 
   async ngOnInit() {
@@ -95,14 +97,14 @@ export class Fichajes implements OnInit, AfterViewInit {
     this.allRows = timeEntries.map((t: any) => ({
       id: t.id,
       usuario: this.associateUserId(t.user_id, users),
-      id_usuario:t.user_id,
+      id_usuario: t.user_id,
       entrada: t.clock_in_at,
       salida: t.clock_out_at,
     }));
 
     this.counts.all = this.allRows.length;
-    this.counts.open = this.allRows.filter(r => r.salida == null).length;
-    this.counts.closed = this.allRows.filter(r => r.salida != null).length;
+    this.counts.open = this.allRows.filter((r) => r.salida == null).length;
+    this.counts.closed = this.allRows.filter((r) => r.salida != null).length;
   }
 
   associateUserId(id_user: number, users: Array<any>) {
@@ -120,9 +122,9 @@ export class Fichajes implements OnInit, AfterViewInit {
 
     const filtered =
       key === 'open'
-        ? this.allRows.filter(r => r.salida == null)
+        ? this.allRows.filter((r) => r.salida == null)
         : key === 'closed'
-          ? this.allRows.filter(r => r.salida != null)
+          ? this.allRows.filter((r) => r.salida != null)
           : this.allRows;
 
     this.datasource.data = filtered;
@@ -137,57 +139,50 @@ export class Fichajes implements OnInit, AfterViewInit {
     this.applyTab(this.activeTab);
   }
 
-isEditOpen = false;
+  isEditOpen = false;
 
-closeEdit(){
-  this.isEditOpen = false;
-}
+  closeEdit() {
+    this.isEditOpen = false;
+  }
 
-timeEntrie:any = null
-clock_in:any = null
-clock_out:any = null
-id_timeEntrie:number = 0
-id_user:number =0
+  timeEntrie: any = null;
+  clock_in: any = null;
+  clock_out: any = null;
+  id_timeEntrie: number = 0;
+  id_user: number = 0;
 
-async openEdit(id:number){  
-  
-  await this.getTimeEntrie(id)
-  this.id_timeEntrie = id
-  this.clock_in = this.toLocalDatetime(this.timeEntrie.clock_in_at);
-  this.clock_out = this.toLocalDatetime(this.timeEntrie.clock_out_at);
-  this.id_user =  this.timeEntrie.user_id
-  this.isEditOpen=true;
-  this.cdr.detectChanges()
-}
+  async openEdit(id: number) {
+    await this.getTimeEntrie(id);
+    this.id_timeEntrie = id;
+    this.clock_in = this.toLocalDatetime(this.timeEntrie.clock_in_at);
+    this.clock_out = this.toLocalDatetime(this.timeEntrie.clock_out_at);
+    this.id_user = this.timeEntrie.user_id;
+    this.isEditOpen = true;
+    this.cdr.detectChanges();
+  }
 
-async getTimeEntrie(id:number){
-  this.timeEntrie = await firstValueFrom(
-    this.timeEntrieService.getTimeEntrieById(id)
-  )
-}
+  async getTimeEntrie(id: number) {
+    this.timeEntrie = await firstValueFrom(this.timeEntrieService.getTimeEntrieById(id));
+  }
 
+  async editTimeEntrie() {
+    const timeEntrie = {
+      user_id: this.id_user,
+      clock_in_at: this.clock_in,
+      clock_out_at: this.clock_out,
+    };
 
-async editTimeEntrie() {
-  const timeEntrie = {
-    user_id: this.id_user,
-    clock_in_at: this.clock_in,
-    clock_out_at: this.clock_out,
-  };
+    await firstValueFrom(this.timeEntrieService.updateTimeEntrie(this.id_timeEntrie, timeEntrie));
 
-  await firstValueFrom(
-    this.timeEntrieService.updateTimeEntrie(this.id_timeEntrie, timeEntrie)
-  );
+    await this.loadTable();
+    this.applyTab(this.activeTab);
+    this.isEditOpen = false;
+  }
 
-  await this.loadTable();
-  this.applyTab(this.activeTab);
-  this.isEditOpen = false;
-}
-
-toLocalDatetime(value: string | null) {
-  if (!value) return null;
-  const d = new Date(value);
-  const pad = (n: number) => String(n).padStart(2, '0');
-  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
-}
-
+  toLocalDatetime(value: string | null) {
+    if (!value) return null;
+    const d = new Date(value);
+    const pad = (n: number) => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  }
 }

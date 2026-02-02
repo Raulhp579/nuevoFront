@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { interval } from 'rxjs';
 import { DatePipe, isPlatformBrowser } from '@angular/common';
 import { MapaComponent } from '../mapa/mapa.component';
+import { TimeEntrieService } from '../../services/time-entrie-service';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,7 @@ import { MapaComponent } from '../mapa/mapa.component';
 export class Home implements OnInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef, private timeEntireService:TimeEntrieService) {}
 
   date = new Date();
   currentTime = signal<Date>(new Date());
@@ -101,6 +102,8 @@ export class Home implements OnInit, OnDestroy {
     }
 
     this.timeInOut();
+
+    this.registerTime()
   }
 
   infoTime: string = '00h 00m';
@@ -113,5 +116,11 @@ export class Home implements OnInit, OnDestroy {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem('infoTime', this.infoTime);
     }
+  }
+
+  registerTime(){
+    this.timeEntireService.createWithAuth().subscribe(respose=>{
+      console.log(respose)
+    })
   }
 }
