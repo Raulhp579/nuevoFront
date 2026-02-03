@@ -23,7 +23,10 @@ import { TimeEntrieService } from '../../services/time-entrie-service';
 export class Home implements OnInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
 
-  constructor(private cdr: ChangeDetectorRef, private timeEntireService:TimeEntrieService) {}
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private timeEntireService: TimeEntrieService,
+  ) {}
 
   date = new Date();
   currentTime = signal<Date>(new Date());
@@ -48,28 +51,83 @@ export class Home implements OnInit, OnDestroy {
     return `${h}h ${m}m ${s}s`;
   }
 
+  lastEntries = signal<any[]>([]);
+
   ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      const savedStartTime = localStorage.getItem('timerStartTime');
-      if (savedStartTime) {
-        this.startTime = parseInt(savedStartTime, 10);
+    this.getLastEntries();
+  }
+
+  getLastEntries() {
+    this.timeEntireService.take3().subscribe(
+      (response) => {
+        this.lastEntries.set(response);
+        this.updateStateFromEntries(response);
+      },
+      (error) => {
+        console.error('Error fetching time entries', error);
+      },
+    );
+  }
+
+  updateStateFromEntries(entries: any[]) {
+    if (entries.length > 0) {
+      const latest = entries[0];
+      // Si clock_out_at es nulo, significa que está trabajando
+      if (!latest.clock_out_at) {
         this.working = true;
+        this.startTime = new Date(latest.clock_in_at).getTime();
+        this.infoTime = this.formatTime(new Date(latest.clock_in_at));
         this.startTimer();
+      } else {
+        this.working = false;
+        this.startTime = null;
+        this.stopTimer();
+        // Mostrar hora de salida del último fichaje
+        this.infoTime = this.formatTime(new Date(latest.clock_out_at));
       }
-      const savedInfoTime = localStorage.getItem('infoTime');
-      if (savedInfoTime) {
-        this.infoTime = savedInfoTime;
-      }
+    } else {
+      this.working = false;
+      this.infoTime = '00h 00m';
     }
+  }
+
+  formatTime(date: Date): string {
+    const h = date.getHours().toString().padStart(2, '0');
+    const m = date.getMinutes().toString().padStart(2, '0');
+    return `${h}h ${m}min`;
+  }
+
+  calculateDuration(start: string, end: string): string {
+    if (!start || !end) return '-';
+
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+
+    const diffMs = endDate.getTime() - startDate.getTime();
+    if (diffMs < 0) return '-';
+
+    const diffHrs = Math.floor(diffMs / 3600000);
+    const diffMins = Math.floor((diffMs % 3600000) / 60000);
+
+    return `${diffHrs}h ${diffMins}m`;
   }
 
   ngOnDestroy() {
+    this.stopTimer();
+  }
+
+  private stopTimer() {
     if (this.intervalId) {
       clearInterval(this.intervalId);
+      this.intervalId = null;
     }
+    this.hour = 0;
+    this.min = 0;
+    this.sec = 0;
   }
 
   private startTimer() {
+    this.stopTimer(); // Ensure no duplicate intervals
     this.intervalId = setInterval(() => {
       if (this.startTime) {
         const elapsed = Math.floor((Date.now() - this.startTime) / 1000);
@@ -82,45 +140,19 @@ export class Home implements OnInit, OnDestroy {
   }
 
   inOut() {
-    this.working = !this.working;
-
-    if (this.working) {
-      this.startTime = Date.now();
-      if (isPlatformBrowser(this.platformId)) {
-        localStorage.setItem('timerStartTime', this.startTime.toString());
-      }
-      this.startTimer();
-    } else {
-      clearInterval(this.intervalId);
-      if (isPlatformBrowser(this.platformId)) {
-        localStorage.removeItem('timerStartTime');
-      }
-      this.startTime = null;
-      this.sec = 0;
-      this.min = 0;
-      this.hour = 0;
-    }
-
-    this.timeInOut();
-
-    this.registerTime()
+    // Optimistic UI update or just wait for response?
+    // waiting for response is safer for consistency
+    this.registerTime();
   }
 
   infoTime: string = '00h 00m';
 
-  timeInOut() {
-    const now = new Date();
-    const h = now.getHours().toString().padStart(2, '0');
-    const m = now.getMinutes().toString().padStart(2, '0');
-    this.infoTime = `${h}h ${m}min`;
-    if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem('infoTime', this.infoTime);
-    }
-  }
+  // timeInOut removed as logic is now central via updateStateFromEntries
 
-  registerTime(){
-    this.timeEntireService.createWithAuth().subscribe(respose=>{
-      console.log(respose)
-    })
+  registerTime() {
+    this.timeEntireService.createWithAuth().subscribe((respose) => {
+      console.log(respose);
+      this.getLastEntries(); // This will trigger updateStateFromEntries
+    });
   }
 }

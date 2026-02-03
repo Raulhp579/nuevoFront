@@ -115,21 +115,22 @@
             <span class="right">Duración</span>
           </div>
 
-          <div class="row">
-            <span>08:30 AM</span>
-            <span>— 10:45 AM</span>
-            <span class="right">2h 15m</span>
-          </div>
-          <div class="row">
-            <span>07:57 AM</span>
-            <span>— 05:01 PM</span>
-            <span class="right">9h 03m</span>
-          </div>
-          <div class="row">
-            <span>08:32 AM</span>
-            <span>— 05:02 PM</span>
-            <span class="right">8h 30m</span>
-          </div>
+          @for (entry of lastEntries(); track entry.id) {
+            <div class="row">
+              <span>{{ entry.clock_in_at | date: 'hh:mm a' }}</span>
+              <span
+                >—
+                {{ entry.clock_out_at ? (entry.clock_out_at | date: 'hh:mm a') : 'En curso' }}</span
+              >
+              <span class="right">{{
+                calculateDuration(entry.clock_in_at, entry.clock_out_at)
+              }}</span>
+            </div>
+          } @empty {
+            <div class="row">
+              <span colspan="3">No hay fichajes recientes.</span>
+            </div>
+          }
         </div>
       </section>
     </div>
