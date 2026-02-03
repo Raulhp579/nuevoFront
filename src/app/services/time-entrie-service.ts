@@ -1,16 +1,20 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { Observable } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TimeEntrieService {
   private enlace: string = 'http://127.0.0.1:8000/api/timeEntrie';
-  private baseUrl:string = 'http://127.0.0.1:8000/api';
+  private baseUrl: string = 'http://127.0.0.1:8000/api';
 
   private getHeaders(): HttpHeaders {
-    const token = localStorage.getItem('token');
+    let token = '';
+    if (isPlatformBrowser(this.platformId)) {
+      token = localStorage.getItem('token') || '';
+    }
     return new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
@@ -18,7 +22,10 @@ export class TimeEntrieService {
     });
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: Object,
+  ) {}
 
   getTimeEntries(): Observable<any> {
     return this.http.get(this.enlace, { headers: this.getHeaders() });
@@ -44,7 +51,7 @@ export class TimeEntrieService {
     return this.http.get(`${this.baseUrl}/clock_in_out`, { headers: this.getHeaders() });
   }
 
-  take3():Observable<any>{
-    return this.http.get(`${this.baseUrl}/takeThree`,{ headers: this.getHeaders()})
+  take3(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/takeThree`, { headers: this.getHeaders() });
   }
 }

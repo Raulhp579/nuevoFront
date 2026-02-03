@@ -4,13 +4,14 @@
       <mat-icon>menu</mat-icon>
     </button>
 
-    <div class="brand" routerLink="/home">
-      <div class="logo">{{ user()?.name?.charAt(0).toUpperCase() || 'GF' }}</div>
-      <div class="text">
-        <div class="title">Bienvenido, {{ user()?.name }}</div>
-      </div>
+    <div class="clock-display">
+      <span class="clock-time">{{ currentTime() | date: 'HH:mm:ss' }}</span>
     </div>
   </div>
 
   <div class="spacer"></div>
+
+  <div class="brand right" routerLink="/home">
+    <div class="logo">{{ user()?.name?.charAt(0).toUpperCase() }}</div>
+  </div>
 </mat-toolbar>

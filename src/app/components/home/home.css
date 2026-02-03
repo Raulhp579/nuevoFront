@@ -82,7 +82,7 @@
 .grid-home {
   margin-top: 18px;
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 1.5fr; /* More balanced ratio */
   gap: 18px;
 
   align-items: stretch;
@@ -99,33 +99,64 @@
 
 /* Card principal */
 .card-main {
-  display: grid;
-  grid-template-columns: 1.25fr 0.75fr;
-  padding: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly; /* Better distribution than space-between */
+  gap: 40px;
+  padding: 30px 40px;
   min-height: 240px;
+  width: 100%;
+  position: relative; /* For Pseudo-element separator if needed */
+}
+
+/* Optional: Vertical line between left and right */
+.card-main::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 15%;
+  bottom: 15%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(226, 232, 240, 0.8), transparent);
+  transform: translateX(-50%);
 }
 
 .card-main-left {
-  padding-right: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  max-width: 45%; /* Prevent it from stretching too wide */
 }
 
 .metric-label {
   color: rgb(100, 116, 139);
   font-weight: 800;
   font-size: 13px;
-  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
 }
 
 .metric-value {
   color: rgb(15, 23, 42);
-  font-weight: 900;
-  font-size: 42px;
+  font-weight: 950; /* Ultra bold */
+  font-size: 48px;
+  line-height: 1;
+  white-space: nowrap;
+  letter-spacing: -1px;
 }
 
 .divider {
-  height: 1px;
-  background: rgb(226, 232, 240);
-  margin: 16px 0;
+  height: 2px; /* A bit thicker */
+  background: linear-gradient(
+    90deg,
+    rgba(226, 232, 240, 0.2),
+    rgba(226, 232, 240, 1),
+    rgba(226, 232, 240, 0.2)
+  ); /* Faded edges */
+  margin: 24px 0;
+  width: 100%;
 }
 
 /* Bloque reloj */
@@ -134,29 +165,55 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 14px;
+  gap: 24px;
+  flex: 1;
 }
 
 .clock-circle {
-  width: 150px;
-  height: 150px;
-  border-radius: 999px;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
   display: grid;
   place-items: center;
+  /* Background removed */
 }
 
 .icono-reloj-rojo {
-  font-size: 120px;
-  width: 120px;
-  height: 120px;
+  font-size: 110px;
+  width: 110px;
+  height: 110px;
   color: rgb(220, 53, 69);
+  filter: drop-shadow(0 4px 10px rgba(220, 53, 69, 0.3));
+  transition:
+    transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    color 0.3s ease;
+  cursor: default; /* Icon itself not clickable, button is */
+}
+
+/* Hover on icon OR button triggers effect */
+.card-main-right:has(.btn-primary-red:hover) .icono-reloj-rojo,
+.icono-reloj-rojo:hover {
+  transform: scale(1.15);
+  color: rgb(180, 40, 55); /* Darker red */
 }
 
 .icono-reloj-verde {
-  font-size: 120px;
-  width: 120px;
-  height: 120px;
+  font-size: 110px;
+  width: 110px;
+  height: 110px;
   color: rgb(25, 225, 158);
+  filter: drop-shadow(0 4px 10px rgba(25, 225, 158, 0.3));
+  transition:
+    transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    color 0.3s ease;
+  cursor: default;
+}
+
+/* Hover on icon OR button triggers effect */
+.card-main-right:has(.btn-primary-green:hover) .icono-reloj-verde,
+.icono-reloj-verde:hover {
+  transform: scale(1.15);
+  color: rgb(20, 180, 125); /* Darker green */
 }
 
 /* Botón principal */
@@ -353,7 +410,8 @@
 .right-space {
   text-align: right;
   width: 100%;
-  margin-top: 8px;
+  max-height: 65px;
+  margin-top: 2px;
 }
 
 .header-home {
@@ -410,4 +468,8 @@
   margin-right: 8px;
   box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.15);
   vertical-align: middle;
+}
+
+.reloj {
+  margin-top: 0; /* Reset margin as layout changed */
 }

@@ -1,19 +1,14 @@
 <div class="contenedor animate__animated animate__fadeIn">
-  <div class="div-titulo">
-    <h2 class="titulo">HOME</h2>
-  </div>
-
   <div class="body">
     <div class="welcome-row">
       <div class="header-home">
-        <div class="left-space">
+        <!--         <div class="left-space"> //ver donde poner
           @if (working) {
             <div class="status-row">
               <span class="chip chip-red">
                 <span class="chip-dot"></span>
                 Fichado
               </span>
-              <span class="status-text">Actualmente estás fichado.</span>
             </div>
           } @else {
             <div class="status-row">
@@ -21,14 +16,9 @@
                 <span class="chip-dot"></span>
                 Sin Fichar
               </span>
-              <span class="status-text">Actualmente no estás fichado.</span>
             </div>
           }
-        </div>
-        <div class="right-space">
-          <h3>Fecha y hora actual:</h3>
-          <h4>{{ currentTime() | date: 'HH:mm:ss' }}</h4>
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -73,7 +63,7 @@
             </div>
           </div>
 
-          <div class="card-main-right animate__animated animate__pulse">
+          <div class="card-main-right animate__animated animate__pulse reloj">
             <div class="clock-circle">
               <mat-icon class="icono-reloj-verde">schedule</mat-icon>
             </div>
