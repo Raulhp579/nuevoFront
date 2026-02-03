@@ -10,7 +10,7 @@ import { Register } from './components/register/register';
 export const routes: Routes = [
     {path:'header', component:Header},
     {path:'home', component:Home},
-    {path:'',redirectTo:'home',pathMatch:'full'},
+    {path:'',redirectTo:'login',pathMatch:'full'},
     {path:'fichajes',component:Fichajes},
     {path:'user', component:User},
     {path:'login',component:Login},

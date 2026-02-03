@@ -1,26 +1,16 @@
 <mat-toolbar class="topbar" role="banner">
-
   <div class="left">
     <button mat-icon-button class="icon" (click)="onToggle()" type="button" aria-label="Abrir menú">
       <mat-icon>menu</mat-icon>
     </button>
 
     <div class="brand" routerLink="/home">
-      <div class="logo">GF</div>
+      <div class="logo">{{ user()?.name?.charAt(0).toUpperCase() || 'GF' }}</div>
       <div class="text">
-        <div class="title">Gestor Fichajes</div>
-        <div class="subtitle">Panel de control</div>
+        <div class="title">Bienvenido, {{ user()?.name }}</div>
       </div>
     </div>
   </div>
 
   <div class="spacer"></div>
-
-  <div class="right">
-    <button mat-stroked-button class="login" routerLink="/login" type="button">
-      <mat-icon>person</mat-icon>
-      <span>Iniciar sesión</span>
-    </button>
-  </div>
-
 </mat-toolbar>

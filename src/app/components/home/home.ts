@@ -9,10 +9,11 @@ import {
   inject,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { interval } from 'rxjs';
+import { firstValueFrom, interval } from 'rxjs';
 import { DatePipe, isPlatformBrowser } from '@angular/common';
 import { MapaComponent } from '../mapa/mapa.component';
 import { TimeEntrieService } from '../../services/time-entrie-service';
+import { UserService } from '../../services/user-service';
 
 @Component({
   selector: 'app-home',
@@ -26,6 +27,7 @@ export class Home implements OnInit, OnDestroy {
   constructor(
     private cdr: ChangeDetectorRef,
     private timeEntireService: TimeEntrieService,
+    private userService: UserService,
   ) {}
 
   date = new Date();
@@ -53,7 +55,7 @@ export class Home implements OnInit, OnDestroy {
 
   lastEntries = signal<any[]>([]);
 
-  ngOnInit() {
+  async ngOnInit() {
     this.getLastEntries();
   }
 

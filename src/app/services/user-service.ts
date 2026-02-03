@@ -9,6 +9,7 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   private enlaceUsuarios: string = 'http://127.0.0.1:8000/api/user';
+  private baseUrl: string = 'http://127.0.0.1:8000/api/';
 
   private getHeaders(): HttpHeaders {
     const token = localStorage.getItem('token');
@@ -32,5 +33,9 @@ export class UserService {
 
   borrarUsuario(id: number): Observable<any> {
     return this.http.delete(`${this.enlaceUsuarios}/${id}`, { headers: this.getHeaders() });
+  }
+
+  userInfo(): Observable<any> {
+    return this.http.get(`${this.baseUrl}userInfo`, { headers: this.getHeaders() });
   }
 }

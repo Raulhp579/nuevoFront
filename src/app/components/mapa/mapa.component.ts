@@ -33,6 +33,10 @@ export class MapaComponent implements AfterViewInit, OnDestroy {
     this.configurarIconos(L);
 
     // Initialize map
+    if (this.map) {
+      this.map.remove();
+      this.map = null;
+    }
     this.map = L.map('map').setView([37.8802, -4.8041], 14);
 
     // Add tiles
