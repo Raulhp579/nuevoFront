@@ -151,10 +151,56 @@ export class Home implements OnInit, OnDestroy {
 
   // timeInOut removed as logic is now central via updateStateFromEntries
 
+  loading = signal<boolean>(false);
+
   registerTime() {
-    this.timeEntireService.createWithAuth().subscribe((respose) => {
-      console.log(respose);
-      this.getLastEntries(); // This will trigger updateStateFromEntries
+    if (this.loading()) return;
+    this.loading.set(true);
+
+    this.takeLocation()
+      .then((location) => {
+        this.timeEntireService.createWithAuth(location).subscribe(
+          (response) => {
+            console.log(response);
+            this.getLastEntries(); // This will trigger updateStateFromEntries
+            this.loading.set(false);
+          },
+          (error) => {
+            console.error('Error registering time:', error);
+            if (error.error && error.error.error) {
+              alert(error.error.error); // Show backend error message to user
+            }
+            this.loading.set(false);
+          },
+        );
+      })
+      .catch(() => {
+        this.loading.set(false);
+      });
+  }
+
+  takeLocation(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const location = {
+              latitud: position.coords.latitude,
+              altitud: position.coords.longitude,
+            };
+            resolve(location);
+          },
+          (error) => {
+            console.log(`Error al obtener la ubicacion: ${error.message}`);
+            // Resolve with null so the backend can handle the error or validate
+            resolve(null);
+          },
+          { enableHighAccuracy: false, timeout: 3000, maximumAge: 10000 },
+        );
+      } else {
+        console.log('la localizacion no es soportada por el navegador');
+        resolve(null);
+      }
     });
   }
 }

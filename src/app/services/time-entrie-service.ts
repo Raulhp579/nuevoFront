@@ -47,8 +47,8 @@ export class TimeEntrieService {
     return this.http.get(`${this.enlace}/${id}`, { headers: this.getHeaders() });
   }
 
-  createWithAuth(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/clock_in_out`, { headers: this.getHeaders() });
+  createWithAuth(location:any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/clock_in_out`,location, { headers: this.getHeaders() });
   }
 
   take3(): Observable<any> {

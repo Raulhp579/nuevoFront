@@ -44,7 +44,13 @@
             <div class="clock-circle">
               <mat-icon class="icono-reloj-rojo">schedule</mat-icon>
             </div>
-            <button class="btn-primary-red" type="button" (click)="inOut()">Fichar salida</button>
+            <button class="btn-primary-red" type="button" (click)="inOut()" [disabled]="loading()">
+              @if (loading()) {
+                <span class="loader"></span> Fichando...
+              } @else {
+                Fichar salida
+              }
+            </button>
           </div>
         </section>
       } @else {
@@ -67,8 +73,17 @@
             <div class="clock-circle">
               <mat-icon class="icono-reloj-verde">schedule</mat-icon>
             </div>
-            <button class="btn-primary-green" type="button" (click)="inOut()">
-              Fichar Entrada
+            <button
+              class="btn-primary-green"
+              type="button"
+              (click)="inOut()"
+              [disabled]="loading()"
+            >
+              @if (loading()) {
+                <span class="loader"></span> Fichando...
+              } @else {
+                Fichar Entrada
+              }
             </button>
           </div>
         </section>
