@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -26,10 +26,16 @@ export class AuthService {
     });
   }
 
+  role = signal<string | null>(null);
+
   constructor(
     private http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object,
-  ) {}
+  ) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.role.set(localStorage.getItem('role'));
+    }
+  }
 
   register(user: any): Observable<any> {
     return this.http.post(`${this.enlace}/register`, user, { headers: this.getHeaders() });
@@ -40,10 +46,32 @@ export class AuthService {
   }
 
   logOut(): Observable<any> {
+    this.clearRole();
     return this.http.delete(`${this.enlace}/logOut`, { headers: this.getHeadersConToken() });
   }
 
   user(): Observable<any> {
     return this.http.get(`${this.enlace}/userInfo`, { headers: this.getHeadersConToken() });
+  }
+
+  setRole(role: string) {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('role', role);
+    }
+    this.role.set(role);
+  }
+
+  clearRole() {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem('role');
+      localStorage.removeItem('token'); // Also clear token here for consistency
+    }
+    this.role.set(null);
+  }
+
+  changePassword(data: any): Observable<any> {
+    return this.http.post(`${this.enlace}/change-password`, data, {
+      headers: this.getHeadersConToken(),
+    });
   }
 }

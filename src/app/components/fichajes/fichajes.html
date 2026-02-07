@@ -5,7 +5,11 @@
       <div class="h1">Registro de fichajes</div>
     </div>
     <div class="table-actions">
-      <div class="hint">Total: {{ counts.all }}</div>
+      <!-- Add Button -->
+      <button mat-flat-button class="btn-primary" (click)="openCreate()">
+        <mat-icon>add_alarm</mat-icon>
+        Nuevo Fichaje
+      </button>
     </div>
   </div>
 
@@ -99,8 +103,8 @@
   </div>
 </div>
 
+<!-- EDIT MODAL -->
 @if (isEditOpen) {
-  <!-- Overlay modal (ponlo al final del template) -->
   <div class="modal-overlay animate__animated animate__fadeIn" (click)="closeEdit()">
     <mat-card class="modal-card" appearance="outlined" (click)="$event.stopPropagation()">
       <mat-card-header class="modal-head">
@@ -153,6 +157,82 @@
 
         <button mat-raised-button class="btn-primary" type="button" (click)="editTimeEntrie()">
           Guardar cambios
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+}
+
+<!-- CREATE MODAL -->
+@if (isCreateOpen) {
+  <div class="modal-overlay animate__animated animate__fadeIn" (click)="closeCreate()">
+    <mat-card class="modal-card" appearance="outlined" (click)="$event.stopPropagation()">
+      <mat-card-header class="modal-head">
+        <div class="head-left">
+          <div class="head-icon">
+            <mat-icon>add_alarm</mat-icon>
+          </div>
+
+          <div class="head-text">
+            <mat-card-title>Nuevo fichaje</mat-card-title>
+            <mat-card-subtitle>Registra una nueva entrada/salida</mat-card-subtitle>
+          </div>
+        </div>
+
+        <button
+          mat-icon-button
+          class="close-btn"
+          type="button"
+          aria-label="Cerrar"
+          (click)="closeCreate()"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-card-header>
+
+      <mat-card-content class="modal-body">
+        <div class="form-grid">
+          <!-- Usuario Select -->
+          <mat-form-field>
+            <mat-label>Usuario</mat-label>
+            <mat-select [(ngModel)]="newEntry.user_id" name="new_user">
+              @for (user of usersList; track user.id) {
+                <mat-option [value]="user.id">{{ user.name }} ({{ user.email }})</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <!-- Entrada -->
+          <mat-form-field>
+            <mat-label>Entrada</mat-label>
+            <input
+              matInput
+              type="datetime-local"
+              [(ngModel)]="newEntry.clock_in"
+              name="new_clock_in"
+            />
+          </mat-form-field>
+
+          <!-- Salida -->
+          <mat-form-field>
+            <mat-label>Salida (Opcional)</mat-label>
+            <input
+              matInput
+              type="datetime-local"
+              [(ngModel)]="newEntry.clock_out"
+              name="new_clock_out"
+            />
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions class="modal-actions" align="end">
+        <button mat-stroked-button class="btn-ghost" type="button" (click)="closeCreate()">
+          Cancelar
+        </button>
+
+        <button mat-raised-button class="btn-primary" type="button" (click)="createTimeEntry()">
+          Crear Fichaje
         </button>
       </mat-card-actions>
     </mat-card>

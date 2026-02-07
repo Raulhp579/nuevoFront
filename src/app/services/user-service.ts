@@ -45,4 +45,8 @@ export class UserService {
   userInfo(): Observable<any> {
     return this.http.get(`${this.baseUrl}userInfo`, { headers: this.getHeaders() });
   }
+
+  getStatistics(): Observable<any> {
+    return this.http.get(`${this.baseUrl}time-entries/statistics`, { headers: this.getHeaders() });
+  }
 }

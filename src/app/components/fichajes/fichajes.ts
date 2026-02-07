@@ -68,6 +68,9 @@ export class Fichajes implements OnInit, AfterViewInit {
 
   counts = { all: 0, open: 0, closed: 0 };
 
+  // List of users for dropdowns
+  usersList: any[] = [];
+
   constructor(
     private timeEntrieService: TimeEntrieService,
     private userService: UserService,
@@ -93,6 +96,8 @@ export class Fichajes implements OnInit, AfterViewInit {
       firstValueFrom(this.timeEntrieService.getTimeEntries()),
       firstValueFrom(this.userService.verUsuarios()),
     ]);
+
+    this.usersList = users;
 
     this.allRows = timeEntries.map((t: any) => ({
       id: t.id,
@@ -134,22 +139,23 @@ export class Fichajes implements OnInit, AfterViewInit {
   }
 
   async deleteTimeEntrie(id: number) {
+    if (!confirm('¿Seguro que quieres borrar este fichaje?')) return;
     await firstValueFrom(this.timeEntrieService.deleteTimeEntrie(id));
     await this.loadTable();
     this.applyTab(this.activeTab);
   }
 
+  // --- EDIT ---
   isEditOpen = false;
-
-  closeEdit() {
-    this.isEditOpen = false;
-  }
-
   timeEntrie: any = null;
   clock_in: any = null;
   clock_out: any = null;
   id_timeEntrie: number = 0;
   id_user: number = 0;
+
+  closeEdit() {
+    this.isEditOpen = false;
+  }
 
   async openEdit(id: number) {
     await this.getTimeEntrie(id);
@@ -177,6 +183,57 @@ export class Fichajes implements OnInit, AfterViewInit {
     await this.loadTable();
     this.applyTab(this.activeTab);
     this.isEditOpen = false;
+  }
+
+  // --- CREATE ---
+  isCreateOpen = false;
+  newEntry = {
+    user_id: null,
+    clock_in: '', // backend expects 'clock_in'
+    clock_out: '', // backend expects 'clock_out'
+  };
+
+  openCreate() {
+    // Set default values if needed, e.g. current time
+    const now = new Date();
+    this.newEntry = {
+      user_id: null,
+      clock_in: this.toLocalDatetime(now.toISOString()) || '',
+      clock_out: '',
+    };
+    this.isCreateOpen = true;
+  }
+
+  closeCreate() {
+    this.isCreateOpen = false;
+  }
+
+  async createTimeEntry() {
+    if (!this.newEntry.user_id || !this.newEntry.clock_in) {
+      alert('Debes seleccionar un usuario y una fecha de entrada');
+      return;
+    }
+
+    // Convert empty string clocK_out to null or undefined if needed,
+    // but input type datetime-local usually gives empty string.
+    // The backend uses $request->clock_out.
+
+    const payload = {
+      user_id: this.newEntry.user_id,
+      clock_in: this.newEntry.clock_in,
+      clock_out: this.newEntry.clock_out ? this.newEntry.clock_out : null,
+    };
+
+    try {
+      await firstValueFrom(this.timeEntrieService.createTimeEntrie(payload));
+      await this.loadTable();
+      this.applyTab(this.activeTab);
+      this.closeCreate();
+      alert('Fichaje creado correctamente');
+    } catch (error: any) {
+      console.error('Error creating entry', error);
+      alert(error.error?.error || 'Error al crear el fichaje');
+    }
   }
 
   toLocalDatetime(value: string | null) {

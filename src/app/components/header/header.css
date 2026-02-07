@@ -76,10 +76,10 @@
   border: 1px solid transparent;
 
   /* Fix position to right */
-  position: fixed;
-  right: 16px;
-  top: 5px;
-  z-index: 1200;
+  /* position: fixed; */
+  /* right: 16px; */
+  /* top: 5px; */
+  /* z-index: 1200; */
 }
 .brand:hover {
   background: rgba(255, 255, 255, 0.06);
@@ -195,4 +195,52 @@
   .clock-display {
     display: none;
   }
+}
+
+.user-btn {
+  width: auto;
+  height: auto;
+  line-height: normal;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  min-width: 0;
+}
+
+/* Custom Menu Styles */
+::ng-deep .custom-menu {
+  background-color: #1e293b !important; /* Dark slate blue */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px !important;
+  padding: 4px !important;
+  min-width: 200px !important;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.3),
+    0 10px 15px -3px rgba(0, 0, 0, 0.3) !important;
+}
+
+::ng-deep .custom-menu .mat-mdc-menu-content {
+  padding: 0 !important;
+}
+
+::ng-deep .custom-menu .mat-mdc-menu-item {
+  color: #e2e8f0 !important; /* Light gray text */
+  border-radius: 8px;
+  margin: 2px 0;
+  height: 48px !important;
+  transition: all 0.2s ease;
+}
+
+::ng-deep .custom-menu .mat-mdc-menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+::ng-deep .custom-menu .mat-icon {
+  color: #94a3b8 !important; /* Muted icon color */
+  margin-right: 12px !important;
+}
+
+::ng-deep .custom-menu .mat-mdc-menu-item:hover .mat-icon {
+  color: #3b82f6 !important; /* Blue on hover */
 }

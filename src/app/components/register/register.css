@@ -3,27 +3,33 @@
 }
 
 /* Página (mismo fondo que el resto) */
+/* Página (transparente para ver el degradado de app.css) */
 .auth-page {
-  min-height: calc(100vh - 64px);
+  min-height: 100vh;
   padding: 24px;
   display: grid;
   place-items: center;
-  background: rgb(246, 248, 252);
+  background: transparent;
+  width: 100%;
 }
 
 /* Card */
+/* Card */
 .auth-card {
-  width: 100%;
-  max-width: 520px;
+  width: 600px;
+  max-width: 900px !important;
   border-radius: 18px;
   overflow: hidden; /* importante para que la franja oscura no “corte” */
-  border: 1px solid rgb(226, 232, 240);
-  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); /* Sombra más profunda */
+  background: rgba(255, 255, 255, 0.98); /* Casi opaco para legibilidad */
+  backdrop-filter: blur(10px);
+  margin: auto;
 }
 
 /* Hero (franja oscura arriba, igual que login premium) */
 .auth-hero {
-  padding: 16px 18px;
+  padding: 20px 32px;
   background: linear-gradient(180deg, #0f172a, #111c33);
   border-bottom: 1px solid rgba(148, 163, 184, 0.18);
 }
@@ -79,7 +85,7 @@
 
 /* Body */
 .auth-body {
-  padding: 18px;
+  padding: 32px;
   background: #fff;
 }
 

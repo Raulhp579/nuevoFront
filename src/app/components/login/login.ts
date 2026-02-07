@@ -49,7 +49,8 @@ export class Login {
     try {
       const response = await firstValueFrom(this.authService.login(user));
 
-      localStorage.setItem('token', response.token || response);
+      localStorage.setItem('token', response.token);
+      this.authService.setRole(response.role);
       this.router.navigate(['/home']);
     } catch (error) {
       console.error('Error en login:', error);

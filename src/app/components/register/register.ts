@@ -36,7 +36,10 @@ export class Register {
   hidePass = true;
   hideConfirmPass = true;
 
-  constructor(private authService:AuthService , private router:Router){}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
   registerForm = new FormGroup(
     {
@@ -67,16 +70,15 @@ export class Register {
   async onSubmit() {
     const user = {
       name: this.registerForm.value.name,
-      email:this.registerForm.value.email,
-      password:this.registerForm.value.password
-    }
+      email: this.registerForm.value.email,
+      password: this.registerForm.value.password,
+    };
 
-    const response = await firstValueFrom(
-      this.authService.register(user)
-    )
+    const response = await firstValueFrom(this.authService.register(user));
 
-    localStorage.setItem("token",response.token || response)
+    localStorage.setItem('token', response.token);
+    this.authService.setRole(response.role);
 
-    this.router.navigate(["/home"])
+    this.router.navigate(['/home']);
   }
 }

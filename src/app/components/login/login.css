@@ -5,26 +5,31 @@
 /* En tu app, el padding ya lo pone .page (18px).
    Aquí solo ajustamos el área para que se vea "centrado pero cercano" */
 .login-page {
-  min-height: 100%;
+  min-height: 100vh; /* Ensure full height */
   display: grid;
-  place-items: start center; /* 🔥 arriba-centro, no centro absoluto */
-  padding: 18px 0 40px; /* respeta tu layout */
-  background: transparent; /* el fondo lo da la página */
+  place-items: center; /* Center vertically and horizontally */
+  padding: 18px;
+  background: transparent;
+  width: 100%;
 }
 
 /* Card */
+
 .login-card {
-  width: min(520px, 100%);
+  width: 500px;
+  max-width: 900px !important; /* Force wider card */
   border-radius: 18px;
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  background: #fff;
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   overflow: hidden;
+  margin: auto; /* Ensure centering within grid/flex if needed */
 }
 
 /* Header del card (más suave y menos "bloque") */
 .card-header {
-  padding: 16px 18px;
+  padding: 20px 32px;
   background: linear-gradient(180deg, #0f172a, #101b33);
   border-bottom: 1px solid rgba(148, 163, 184, 0.16);
   display: flex;
@@ -77,7 +82,7 @@
 
 /* Body */
 .card-body {
-  padding: 18px;
+  padding: 32px; /* More breathing room */
 }
 
 /* Form */

@@ -4,8 +4,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../services/user-service';
+import { AuthService } from '../../services/auth-service';
 import { firstValueFrom } from 'rxjs';
 
 @Component({
@@ -18,7 +19,10 @@ import { firstValueFrom } from 'rxjs';
 export class Header implements OnInit, OnDestroy {
   @Output() toggleSidenav = new EventEmitter<void>();
   private userService = inject(UserService);
+  private authService = inject(AuthService); // Inject AuthService
+  private router = inject(Router); // Inject Router
   user = signal<any>(null);
+  role = this.authService.role;
 
   // Señal para la hora actual
   currentTime = signal(new Date());
@@ -47,5 +51,16 @@ export class Header implements OnInit, OnDestroy {
 
   onToggle() {
     this.toggleSidenav.emit();
+  }
+
+  logout() {
+    this.authService.logOut().subscribe({
+      next: () => this.router.navigate(['/login']),
+      error: (err) => {
+        console.error('Logout failed', err);
+        // Even if the backend call fails, we should probably redirect to login
+        this.router.navigate(['/login']);
+      },
+    });
   }
 }

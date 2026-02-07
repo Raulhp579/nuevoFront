@@ -1,5 +1,4 @@
 <div class="table-shell animate__animated animate__fadeIn">
-
   <div class="table-head">
     <div class="table-title">
       <div class="kicker">Usuarios</div>
@@ -7,13 +6,16 @@
     </div>
 
     <div class="table-actions">
-      <div class="hint">Total: {{ datasource.data.length }}</div>
+      <!-- Add Button -->
+      <button mat-flat-button class="btn-primary" (click)="openCreate()">
+        <mat-icon>add</mat-icon>
+        Nuevo Usuario
+      </button>
     </div>
   </div>
 
   <div class="table-card mat-elevation-z2">
     <table mat-table [dataSource]="datasource" class="mat-table">
-
       <!-- ID -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef class="col-id">Id</th>
@@ -49,11 +51,23 @@
         <th mat-header-cell *matHeaderCellDef class="col-actions"></th>
         <td mat-cell *matCellDef="let element" class="col-actions">
           <div class="row-actions">
-            <button mat-icon-button class="icon-btn icon-btn--edit" type="button" aria-label="Editar">
+            <button
+              mat-icon-button
+              class="icon-btn icon-btn--edit"
+              type="button"
+              aria-label="Editar"
+              (click)="openEdit(element)"
+            >
               <mat-icon>edit</mat-icon>
             </button>
 
-            <button mat-icon-button class="icon-btn icon-btn--delete" type="button" aria-label="Borrar" (click)="deleteUser(element.id)">
+            <button
+              mat-icon-button
+              class="icon-btn icon-btn--delete"
+              type="button"
+              aria-label="Borrar"
+              (click)="deleteUser(element.id)"
+            >
               <mat-icon>delete</mat-icon>
             </button>
           </div>
@@ -63,14 +77,9 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header-row"></tr>
 
       <tr mat-row *matRowDef="let row; columns: displayedColumns" class="data-row"></tr>
-
     </table>
 
-
-    <mat-paginator
-      [pageSize]="8"
-      [pageSizeOptions]="[8, 16, 24]"
-      showFirstLastButtons>
+    <mat-paginator [pageSize]="8" [pageSizeOptions]="[8, 16, 24]" showFirstLastButtons>
     </mat-paginator>
 
     @if (datasource.data.length === 0) {
@@ -81,3 +90,139 @@
     }
   </div>
 </div>
+
+<!-- EDIT MODAL -->
+@if (isEditOpen) {
+  <div class="modal-overlay animate__animated animate__fadeIn" (click)="closeEdit()">
+    <mat-card class="modal-card" appearance="outlined" (click)="$event.stopPropagation()">
+      <mat-card-header class="modal-head">
+        <div class="head-left">
+          <div class="head-icon">
+            <mat-icon>person_edit</mat-icon>
+          </div>
+
+          <div class="head-text">
+            <mat-card-title>Editar Usuario</mat-card-title>
+            <mat-card-subtitle>Actualiza los datos del usuario</mat-card-subtitle>
+          </div>
+        </div>
+
+        <button
+          mat-icon-button
+          class="close-btn"
+          type="button"
+          aria-label="Cerrar"
+          (click)="closeEdit()"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-card-header>
+
+      <mat-card-content class="modal-body">
+        <div class="form-grid">
+          <!-- Nombre -->
+          <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput type="text" [(ngModel)]="currentUser.name" name="name" />
+          </mat-form-field>
+
+          <!-- Email -->
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput type="email" [(ngModel)]="currentUser.email" name="email" />
+          </mat-form-field>
+
+          <!-- Contraseña Opcional -->
+          <mat-form-field>
+            <mat-label>Nueva Contraseña (Opcional)</mat-label>
+            <input
+              matInput
+              type="password"
+              [(ngModel)]="currentUser.password"
+              name="password"
+              placeholder="Dejar en blanco para mantener"
+            />
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions class="modal-actions" align="end">
+        <button mat-stroked-button class="btn-ghost" type="button" (click)="closeEdit()">
+          Cancelar
+        </button>
+
+        <button mat-raised-button class="btn-primary" type="button" (click)="updateUser()">
+          Guardar cambios
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+}
+
+<!-- CREATE MODAL -->
+@if (isCreateOpen) {
+  <div class="modal-overlay animate__animated animate__fadeIn" (click)="closeCreate()">
+    <mat-card class="modal-card" appearance="outlined" (click)="$event.stopPropagation()">
+      <mat-card-header class="modal-head">
+        <div class="head-left">
+          <div class="head-icon">
+            <mat-icon>person_add</mat-icon>
+          </div>
+
+          <div class="head-text">
+            <mat-card-title>Nuevo Usuario</mat-card-title>
+            <mat-card-subtitle>Añade un nuevo usuario al sistema</mat-card-subtitle>
+          </div>
+        </div>
+
+        <button
+          mat-icon-button
+          class="close-btn"
+          type="button"
+          aria-label="Cerrar"
+          (click)="closeCreate()"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-card-header>
+
+      <mat-card-content class="modal-body">
+        <div class="form-grid">
+          <!-- Nombre -->
+          <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput type="text" [(ngModel)]="newUser.name" name="new_name" />
+          </mat-form-field>
+
+          <!-- Email -->
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput type="email" [(ngModel)]="newUser.email" name="new_email" />
+          </mat-form-field>
+
+          <!-- Contraseña -->
+          <mat-form-field>
+            <mat-label>Contraseña</mat-label>
+            <input
+              matInput
+              type="password"
+              [(ngModel)]="newUser.password"
+              name="new_password"
+              required
+            />
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions class="modal-actions" align="end">
+        <button mat-stroked-button class="btn-ghost" type="button" (click)="closeCreate()">
+          Cancelar
+        </button>
+
+        <button mat-raised-button class="btn-primary" type="button" (click)="createUser()">
+          Crear Usuario
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+}

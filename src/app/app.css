@@ -1,27 +1,26 @@
-.shell{
+.shell {
   height: 100vh;
   width: 100%;
-  background: #0f172a;   /* 🔥 antes #f4f6fb */
+  background: #0f172a; /* 🔥 antes #f4f6fb */
   overflow: hidden;
 }
 
-
-.content{
-  overflow: hidden;                 /* 🔥 clave */
+.content {
+  overflow: hidden; /* 🔥 clave */
 }
 
 /* Drawer */
-.barra{
+.barra {
   width: 280px;
   background: linear-gradient(180deg, #0b1220, #0a1020);
-  border-right: 1px solid rgba(148,163,184,.18);
-  color: rgba(255,255,255,.92);
+  border-right: 1px solid rgba(148, 163, 184, 0.18);
+  color: rgba(255, 255, 255, 0.92);
   padding: 12px 10px;
-  overflow: hidden;                 /* 🔥 clave */
+  overflow: hidden; /* 🔥 clave */
 }
 
 /* 🔥 ESTE ES EL CONTENEDOR QUE TE METE EL SCROLL */
-.barra .mat-drawer-inner-container{
+.barra .mat-drawer-inner-container {
   overflow-x: hidden !important;
   overflow-y: auto;
   display: flex;
@@ -29,50 +28,60 @@
 }
 
 /* Top */
-.sb-top{
+.sb-top {
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 10px 10px 14px;
   margin-bottom: 10px;
-  border-bottom: 1px solid rgba(148,163,184,.14);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.14);
 }
 
-.sb-avatar{
+.sb-avatar {
   width: 46px;
   height: 46px;
   border-radius: 16px;
   display: grid;
   place-items: center;
   font-weight: 900;
-  letter-spacing: .3px;
-  background: rgba(59,130,246,.18);
-  border: 1px solid rgba(59,130,246,.40);
-  color: rgba(255,255,255,.95);
+  letter-spacing: 0.3px;
+  background: rgba(59, 130, 246, 0.18);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  color: rgba(255, 255, 255, 0.95);
 }
 
-.sb-meta{ display: grid; gap: 2px; line-height: 1.05; }
-.sb-title{ font-weight: 850; letter-spacing: .2px; }
-.sb-subtitle{ font-size: 12px; color: rgba(226,232,240,.70); }
+.sb-meta {
+  display: grid;
+  gap: 2px;
+  line-height: 1.05;
+}
+.sb-title {
+  font-weight: 850;
+  letter-spacing: 0.2px;
+}
+.sb-subtitle {
+  font-size: 12px;
+  color: rgba(226, 232, 240, 0.7);
+}
 
-.sb-section{
+.sb-section {
   padding: 10px 12px 6px;
   font-size: 11px;
-  letter-spacing: .12em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(226,232,240,.55);
+  color: rgba(226, 232, 240, 0.55);
 }
 
 /* Nav: el “margen” va aquí, no en los items */
-.nav{
+.nav {
   padding: 0 8px;
   overflow-x: hidden;
 }
 
 /* Item real de Material */
-.nav .mat-mdc-list-item{
+.nav .mat-mdc-list-item {
   width: 100%;
-  margin: 6px 0;                    /* 🔥 sin margen lateral */
+  margin: 6px 0; /* 🔥 sin margen lateral */
   border-radius: 16px;
   min-height: 48px;
 
@@ -81,19 +90,22 @@
 
   position: relative;
   overflow: hidden;
-  transition: background .12s ease, border-color .12s ease, transform .12s ease;
+  transition:
+    background 0.12s ease,
+    border-color 0.12s ease,
+    transform 0.12s ease;
 }
 
 /* Evita que el contenido empuje y cree overflow */
-.nav .mat-mdc-list-item .mdc-list-item__content{
+.nav .mat-mdc-list-item .mdc-list-item__content {
   padding: 0 12px;
   min-width: 0;
 }
 
 /* Texto e iconos */
 .nav .mat-mdc-list-item,
-.nav .mat-mdc-list-item .mdc-list-item__primary-text{
-  color: rgba(255,255,255,.88) !important;
+.nav .mat-mdc-list-item .mdc-list-item__primary-text {
+  color: rgba(255, 255, 255, 0.88) !important;
   font-weight: 650;
   white-space: nowrap;
   overflow: hidden;
@@ -101,83 +113,114 @@
 }
 
 .nav .mat-mdc-list-item .mat-mdc-list-item-icon,
-.nav .mat-mdc-list-item mat-icon{
-  color: rgba(255,255,255,.88) !important;
+.nav .mat-mdc-list-item mat-icon {
+  color: rgba(255, 255, 255, 0.88) !important;
 }
 
 /* Hover */
-.nav .mat-mdc-list-item:hover{
-  background: rgba(255,255,255,.06);
-  border-color: rgba(255,255,255,.10);
+.nav .mat-mdc-list-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
   transform: translateY(-1px);
 }
 
 /* Activo */
-.nav .mat-mdc-list-item.activo{
-  background: rgba(59,130,246,.16);
-  border-color: rgba(59,130,246,.35);
+.nav .mat-mdc-list-item.activo {
+  background: rgba(59, 130, 246, 0.16);
+  border-color: rgba(59, 130, 246, 0.35);
 }
 
-.nav .mat-mdc-list-item.activo::before{
-  content: "";
+.nav .mat-mdc-list-item.activo::before {
+  content: '';
   position: absolute;
   left: 0;
   top: 10px;
   bottom: 10px;
   width: 4px;
   border-radius: 999px;
-  background: rgba(59,130,246,.95);
+  background: rgba(59, 130, 246, 0.95);
 }
 
 /* Content */
-.page{
+.page {
   padding: 18px;
   overflow: hidden;
 }
 
 /* 🔥 Quita el gap: el fondo detrás del header debe ser oscuro */
-.content{
-  background: #0f172a;   /* mismo tono que el header */
+.content {
+  background: #0f172a; /* mismo tono que el header */
   overflow: hidden;
 }
 
-.page{
+.page {
   background: #f4f6fb;
   min-height: calc(100vh - 64px);
   padding: 18px;
 }
 
 /* Une visualmente drawer y content */
-.barra{
- border-right: 1px solid rgba(148,163,184,.18); 
+.barra {
+  border-right: 1px solid rgba(148, 163, 184, 0.18);
 }
 
-.content{
+.content {
   background: #0f172a;
   overflow: hidden;
 }
 
-.topbar{
+.topbar {
   border-bottom: none; /* quita el borde del toolbar */
 }
 
-.shell{
+.shell {
   height: 100vh;
   overflow: hidden; /* el contenedor NO scrollea */
 }
 
 /* el drawer-content tampoco, solo contiene header+main */
-.content{
+.content {
   height: 100%;
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 
-
-.page{
+.page {
   flex: 1;
-  overflow: auto;          /* <- scroll */
+  overflow: auto; /* <- scroll */
   background: #f4f6fb;
   padding: 14px 18px 18px;
+}
+
+.page-auth {
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  /* Premium dark gradient background */
+  background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0f172a 75%);
+  position: relative;
+  display: block; /* Ensure it takes full width */
+}
+
+/* Optional: Add a subtle mesh pattern or shine if desired, but a clean gradient is often more premium */
+.page-auth::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23334155' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ensure the router outlet content is above the background */
+.page-auth > * {
+  z-index: 1;
+  position: relative;
+  width: 100%; /* Ensure content can take full width if needed */
+  display: block;
 }

@@ -1,8 +1,16 @@
 <mat-toolbar class="topbar" role="banner">
   <div class="left">
-    <button mat-icon-button class="icon" (click)="onToggle()" type="button" aria-label="Abrir menú">
-      <mat-icon>menu</mat-icon>
-    </button>
+    @if (role() == 'admin') {
+      <button
+        mat-icon-button
+        class="icon"
+        (click)="onToggle()"
+        type="button"
+        aria-label="Abrir menú"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+    }
 
     <div class="clock-display">
       <span class="clock-time">{{ currentTime() | date: 'HH:mm:ss' }}</span>
@@ -11,7 +19,20 @@
 
   <div class="spacer"></div>
 
-  <div class="brand right" routerLink="/home">
-    <div class="logo">{{ user()?.name?.charAt(0).toUpperCase() }}</div>
+  <div class="brand right">
+    <button mat-icon-button [matMenuTriggerFor]="userMenu" class="user-btn">
+      <div class="logo">{{ user()?.name?.charAt(0).toUpperCase() }}</div>
+    </button>
+
+    <mat-menu #userMenu="matMenu" class="custom-menu">
+      <button mat-menu-item routerLink="/profile">
+        <mat-icon>person</mat-icon>
+        <span>Perfil</span>
+      </button>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Cerrar sesión</span>
+      </button>
+    </mat-menu>
   </div>
 </mat-toolbar>
