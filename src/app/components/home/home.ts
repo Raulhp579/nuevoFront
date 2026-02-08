@@ -159,6 +159,27 @@ export class Home implements OnInit, OnDestroy {
 
     this.takeLocation()
       .then((location) => {
+        if (!location) {
+          alert('No se pudo obtener la ubicación. Asegúrate de tener el GPS activado.');
+          this.loading.set(false);
+          return;
+        }
+
+        const medacLat = 37.8802566;
+        const medacLon = -4.8040947;
+        const distance = this.calculateDistance(
+          location.latitud,
+          location.altitud,
+          medacLat,
+          medacLon,
+        );
+
+        if (distance > 0.2) {
+          alert('No puedes fichar: Estás a más de 200 metros de tu puesto de trabajo.');
+          this.loading.set(false);
+          return;
+        }
+
         this.timeEntireService.createWithAuth(location).subscribe(
           (response) => {
             console.log(response);
@@ -202,5 +223,25 @@ export class Home implements OnInit, OnDestroy {
         resolve(null);
       }
     });
+  }
+
+  // Haversine formula to calculate distance in km
+  calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
+    const R = 6371; // Radius of the earth in km
+    const dLat = this.deg2rad(lat2 - lat1);
+    const dLon = this.deg2rad(lon2 - lon1);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(this.deg2rad(lat1)) *
+        Math.cos(this.deg2rad(lat2)) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const d = R * c; // Distance in km
+    return d;
+  }
+
+  deg2rad(deg: number): number {
+    return deg * (Math.PI / 180);
   }
 }

@@ -27,8 +27,9 @@ export class TimeEntrieService {
     @Inject(PLATFORM_ID) private platformId: Object,
   ) {}
 
-  getTimeEntries(): Observable<any> {
-    return this.http.get(this.enlace, { headers: this.getHeaders() });
+  getTimeEntries(userId?: number): Observable<any> {
+    const url = userId ? `${this.enlace}?user_id=${userId}` : this.enlace;
+    return this.http.get(url, { headers: this.getHeaders() });
   }
 
   createTimeEntrie(timeEntrie: any): Observable<any> {
@@ -47,8 +48,8 @@ export class TimeEntrieService {
     return this.http.get(`${this.enlace}/${id}`, { headers: this.getHeaders() });
   }
 
-  createWithAuth(location:any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/clock_in_out`,location, { headers: this.getHeaders() });
+  createWithAuth(location: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/clock_in_out`, location, { headers: this.getHeaders() });
   }
 
   take3(): Observable<any> {

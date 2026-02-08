@@ -5,6 +5,17 @@
       <div class="h1">Registro de fichajes</div>
     </div>
     <div class="table-actions">
+      <!-- User Filter -->
+      <mat-form-field appearance="outline" class="filter-field">
+        <mat-label>Filtrar por usuario</mat-label>
+        <mat-select [(ngModel)]="selectedUser" (selectionChange)="onUserFilterChange()">
+          <mat-option [value]="null">Todos los usuarios</mat-option>
+          @for (user of usersList; track user.id) {
+            <mat-option [value]="user.id">{{ user.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
       <!-- Add Button -->
       <button mat-flat-button class="btn-primary" (click)="openCreate()">
         <mat-icon>add_alarm</mat-icon>

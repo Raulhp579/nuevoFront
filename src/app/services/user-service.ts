@@ -26,8 +26,9 @@ export class UserService {
     });
   }
 
-  verUsuarios(): Observable<any> {
-    return this.http.get(this.enlaceUsuarios, { headers: this.getHeaders() });
+  verUsuarios(name?: string): Observable<any> {
+    const url = name ? `${this.enlaceUsuarios}?name=${name}` : this.enlaceUsuarios;
+    return this.http.get(url, { headers: this.getHeaders() });
   }
 
   crearUsuario(user: any): Observable<any> {
@@ -48,5 +49,12 @@ export class UserService {
 
   getStatistics(): Observable<any> {
     return this.http.get(`${this.baseUrl}time-entries/statistics`, { headers: this.getHeaders() });
+  }
+
+  downloadPdf(id: number, month: number, year: number): Observable<Blob> {
+    return this.http.get(`${this.baseUrl}getPdf/${id}?month=${month}&year=${year}`, {
+      headers: this.getHeaders(),
+      responseType: 'blob',
+    });
   }
 }

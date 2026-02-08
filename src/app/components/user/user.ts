@@ -37,15 +37,20 @@ export class User implements OnInit, AfterViewInit {
   // Modal State
   isEditOpen = false;
   isCreateOpen = false;
+  isDownloadOpen = false;
 
   // Create / Edit Objects
   currentUser: any = { id: 0, name: '', email: '', password: '' };
   newUser: any = { name: '', email: '', password: '' };
+  downloadData: any = { userId: 0, month: '', year: '' };
+
+  // Search
+  searchText: string = '';
 
   constructor(private userService: UserService) {}
 
   async loadTable() {
-    const users = await firstValueFrom(this.userService.verUsuarios());
+    const users = await firstValueFrom(this.userService.verUsuarios(this.searchText));
     this.datasource.data = users;
     if (this.paginator) {
       this.datasource.paginator = this.paginator;
@@ -53,6 +58,10 @@ export class User implements OnInit, AfterViewInit {
   }
 
   async ngOnInit() {
+    this.loadTable();
+  }
+
+  onSearchChange() {
     this.loadTable();
   }
 
@@ -137,6 +146,48 @@ export class User implements OnInit, AfterViewInit {
     } catch (error: any) {
       console.error('Error creating user', error);
       alert(error.error?.error || 'Error al crear el usuario');
+    }
+  }
+
+  // --- DOWNLOAD PDF ---
+  openDownload(user: any) {
+    this.downloadData = { userId: user.id, month: '', year: '' };
+    this.isDownloadOpen = true;
+  }
+
+  closeDownload() {
+    this.isDownloadOpen = false;
+    this.downloadData = { userId: 0, month: '', year: '' };
+  }
+
+  async downloadRecord() {
+    try {
+      if (!this.downloadData.month || !this.downloadData.year) {
+        alert('Por favor introduzca mes y año');
+        return;
+      }
+
+      const blob = await firstValueFrom(
+        this.userService.downloadPdf(
+          this.downloadData.userId,
+          this.downloadData.month,
+          this.downloadData.year,
+        ),
+      );
+
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Registro_Jornada_${this.downloadData.month}_${this.downloadData.year}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      a.remove();
+
+      this.closeDownload();
+    } catch (error: any) {
+      console.error('Error downloading PDF', error);
+      alert('Error al descargar el PDF. Asegúrese de que existen registros para esa fecha.');
     }
   }
 }

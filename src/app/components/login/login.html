@@ -51,6 +51,13 @@
           }
         </mat-form-field>
 
+        @if (loginError) {
+          <div class="error-box animate__animated animate__fadeIn">
+            <mat-icon>error</mat-icon>
+            <span>{{ loginError }}</span>
+          </div>
+        }
+
         <div class="actions">
           <button
             [disabled]="loginForm.invalid"

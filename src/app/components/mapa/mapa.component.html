@@ -1,3 +1,10 @@
 <div class="mapa-container">
+  @if (errorMessage) {
+    <div class="map-error animate__animated animate__fadeIn">
+      <div class="error-msg">
+        {{ errorMessage }}
+      </div>
+    </div>
+  }
   <div id="map" class="mapa"></div>
 </div>

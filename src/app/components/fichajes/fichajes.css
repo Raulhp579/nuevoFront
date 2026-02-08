@@ -4,10 +4,10 @@
 
 .table-head {
   display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 16px;
-  margin: 6px 2px 12px;
+  flex-direction: column; /* Stack Title on top of Actions */
+  align-items: stretch;
+  gap: 24px; /* Space between Title and Actions row */
+  margin: 6px 2px 24px;
 }
 
 .table-title .kicker {
@@ -394,4 +394,41 @@ mat-paginator {
 
   /* para que no se pegue arriba cuando hay scroll */
   margin: auto;
+}
+
+.table-actions {
+  display: flex !important;
+  justify-content: space-between !important; /* Force Filter Left, Button Right */
+  align-items: center !important; /* Force Vertically Centered */
+  width: 100% !important;
+  margin-bottom: 24px;
+}
+
+.filter-field {
+  width: 300px;
+  font-size: 14px;
+}
+
+/* HIDE SUBSCRIPT/HINT SPACE for perfect centering */
+.filter-field ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+  display: none !important;
+}
+
+/* Adjust mat-form-field to look cleaner */
+.filter-field ::ng-deep .mat-mdc-text-field-wrapper {
+  background-color: white !important;
+  border-radius: 10px;
+  height: 48px;
+  padding: 0 12px;
+}
+
+.filter-field ::ng-deep .mat-mdc-form-field-flex {
+  height: 48px;
+  align-items: center;
+}
+
+.filter-field ::ng-deep .mdc-notched-outline__leading,
+.filter-field ::ng-deep .mdc-notched-outline__notch,
+.filter-field ::ng-deep .mdc-notched-outline__trailing {
+  border-color: #e2e8f0 !important;
 }

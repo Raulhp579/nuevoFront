@@ -71,6 +71,9 @@ export class Fichajes implements OnInit, AfterViewInit {
   // List of users for dropdowns
   usersList: any[] = [];
 
+  // Filter
+  selectedUser: number | null = null;
+
   constructor(
     private timeEntrieService: TimeEntrieService,
     private userService: UserService,
@@ -92,8 +95,11 @@ export class Fichajes implements OnInit, AfterViewInit {
   }
 
   async loadTable() {
+    // Pass selectedUser to getTimeEntries (undefined if null)
+    const userIdArg = this.selectedUser ? this.selectedUser : undefined;
+
     const [timeEntries, users] = await Promise.all([
-      firstValueFrom(this.timeEntrieService.getTimeEntries()),
+      firstValueFrom(this.timeEntrieService.getTimeEntries(userIdArg)),
       firstValueFrom(this.userService.verUsuarios()),
     ]);
 
@@ -110,6 +116,12 @@ export class Fichajes implements OnInit, AfterViewInit {
     this.counts.all = this.allRows.length;
     this.counts.open = this.allRows.filter((r) => r.salida == null).length;
     this.counts.closed = this.allRows.filter((r) => r.salida != null).length;
+  }
+
+  onUserFilterChange() {
+    this.loadTable().then(() => {
+      this.applyTab(this.activeTab);
+    });
   }
 
   associateUserId(id_user: number, users: Array<any>) {
