@@ -74,11 +74,25 @@ export class Fichajes implements OnInit, AfterViewInit {
   // Filter
   selectedUser: number | null = null;
 
+  // Modal Safety
+  private isOverlayClick = false;
+
   constructor(
     private timeEntrieService: TimeEntrieService,
     private userService: UserService,
     private cdr: ChangeDetectorRef,
   ) {}
+
+  onOverlayMouseDown(event: MouseEvent) {
+    this.isOverlayClick = event.target === event.currentTarget;
+  }
+
+  handleOverlayClose(event: MouseEvent, closeFn: () => void) {
+    if (this.isOverlayClick && event.target === event.currentTarget) {
+      closeFn();
+    }
+    this.isOverlayClick = false;
+  }
 
   async ngOnInit() {
     await this.loadTable();

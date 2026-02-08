@@ -47,7 +47,23 @@ export class User implements OnInit, AfterViewInit {
   // Search
   searchText: string = '';
 
+  // Modal Background Click Safety
+  private isOverlayClick = false;
+
   constructor(private userService: UserService) {}
+
+  onOverlayMouseDown(event: MouseEvent) {
+    // Only register if the actual target is the overlay (not inner content)
+    this.isOverlayClick = event.target === event.currentTarget;
+  }
+
+  handleOverlayClose(event: MouseEvent, closeFn: () => void) {
+    // Both mousedown and click must be on the overlay
+    if (this.isOverlayClick && event.target === event.currentTarget) {
+      closeFn();
+    }
+    this.isOverlayClick = false; // Reset
+  }
 
   async loadTable() {
     const users = await firstValueFrom(this.userService.verUsuarios(this.searchText));

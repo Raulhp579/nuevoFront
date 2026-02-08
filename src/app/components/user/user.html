@@ -140,17 +140,39 @@
       </mat-card-header>
 
       <mat-card-content class="modal-body">
-        <div class="form-grid">
+        <form #editForm="ngForm" class="form-grid">
           <!-- Nombre -->
           <mat-form-field>
             <mat-label>Nombre</mat-label>
-            <input matInput type="text" [(ngModel)]="currentUser.name" name="name" />
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="currentUser.name"
+              name="name"
+              required
+              minlength="3"
+              #nameInput="ngModel"
+            />
+            @if (nameInput.invalid && (nameInput.dirty || nameInput.touched)) {
+              <mat-error>El nombre es obligatorio (mín. 3 caracteres)</mat-error>
+            }
           </mat-form-field>
 
           <!-- Email -->
           <mat-form-field>
             <mat-label>Email</mat-label>
-            <input matInput type="email" [(ngModel)]="currentUser.email" name="email" />
+            <input
+              matInput
+              type="email"
+              [(ngModel)]="currentUser.email"
+              name="email"
+              required
+              email
+              #emailInput="ngModel"
+            />
+            @if (emailInput.invalid && (emailInput.dirty || emailInput.touched)) {
+              <mat-error>Introduce un email válido</mat-error>
+            }
           </mat-form-field>
 
           <!-- Contraseña Opcional -->
@@ -162,9 +184,14 @@
               [(ngModel)]="currentUser.password"
               name="password"
               placeholder="Dejar en blanco para mantener"
+              minlength="6"
+              #passInput="ngModel"
             />
+            @if (passInput.invalid && (passInput.dirty || passInput.touched)) {
+              <mat-error>La contraseña debe tener al menos 6 caracteres</mat-error>
+            }
           </mat-form-field>
-        </div>
+        </form>
       </mat-card-content>
 
       <mat-card-actions class="modal-actions" align="end">
@@ -172,7 +199,13 @@
           Cancelar
         </button>
 
-        <button mat-raised-button class="btn-primary" type="button" (click)="updateUser()">
+        <button
+          mat-raised-button
+          class="btn-primary"
+          type="button"
+          (click)="updateUser()"
+          [disabled]="editForm.invalid"
+        >
           Guardar cambios
         </button>
       </mat-card-actions>
@@ -208,17 +241,39 @@
       </mat-card-header>
 
       <mat-card-content class="modal-body">
-        <div class="form-grid">
+        <form #createForm="ngForm" class="form-grid">
           <!-- Nombre -->
           <mat-form-field>
             <mat-label>Nombre</mat-label>
-            <input matInput type="text" [(ngModel)]="newUser.name" name="new_name" />
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="newUser.name"
+              name="new_name"
+              required
+              minlength="3"
+              #newName="ngModel"
+            />
+            @if (newName.invalid && (newName.dirty || newName.touched)) {
+              <mat-error>El nombre es obligatorio</mat-error>
+            }
           </mat-form-field>
 
           <!-- Email -->
           <mat-form-field>
             <mat-label>Email</mat-label>
-            <input matInput type="email" [(ngModel)]="newUser.email" name="new_email" />
+            <input
+              matInput
+              type="email"
+              [(ngModel)]="newUser.email"
+              name="new_email"
+              required
+              email
+              #newEmail="ngModel"
+            />
+            @if (newEmail.invalid && (newEmail.dirty || newEmail.touched)) {
+              <mat-error>Introduce un email válido</mat-error>
+            }
           </mat-form-field>
 
           <!-- Contraseña -->
@@ -230,9 +285,14 @@
               [(ngModel)]="newUser.password"
               name="new_password"
               required
+              minlength="6"
+              #newPass="ngModel"
             />
+            @if (newPass.invalid && (newPass.dirty || newPass.touched)) {
+              <mat-error>La contraseña es obligatoria (mín. 6 caracteres)</mat-error>
+            }
           </mat-form-field>
-        </div>
+        </form>
       </mat-card-content>
 
       <mat-card-actions class="modal-actions" align="end">
@@ -240,7 +300,13 @@
           Cancelar
         </button>
 
-        <button mat-raised-button class="btn-primary" type="button" (click)="createUser()">
+        <button
+          mat-raised-button
+          class="btn-primary"
+          type="button"
+          (click)="createUser()"
+          [disabled]="createForm.invalid"
+        >
           Crear Usuario
         </button>
       </mat-card-actions>

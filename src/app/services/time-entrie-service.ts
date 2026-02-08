@@ -55,4 +55,12 @@ export class TimeEntrieService {
   take3(): Observable<any> {
     return this.http.get(`${this.baseUrl}/takeThree`, { headers: this.getHeaders() });
   }
+
+  getAllOfOneUser(date?: string): Observable<any> {
+    let url = `${this.baseUrl}/getAllOfOneUser`;
+    if (date) {
+      url += `?date=${date}`;
+    }
+    return this.http.get(url, { headers: this.getHeaders() });
+  }
 }

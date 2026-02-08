@@ -432,3 +432,22 @@ mat-paginator {
 .filter-field ::ng-deep .mdc-notched-outline__trailing {
   border-color: #e2e8f0 !important;
 }
+
+.error-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #b91c1c;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.error-banner mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}

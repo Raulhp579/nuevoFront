@@ -14,10 +14,11 @@ import { DatePipe, isPlatformBrowser } from '@angular/common';
 import { MapaComponent } from '../mapa/mapa.component';
 import { TimeEntrieService } from '../../services/time-entrie-service';
 import { UserService } from '../../services/user-service';
+import { RouterOutlet, RouterLink, RouterLinkActive, Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [MatIconModule, DatePipe, MapaComponent],
+  imports: [MatIconModule, DatePipe, MapaComponent, RouterLink],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

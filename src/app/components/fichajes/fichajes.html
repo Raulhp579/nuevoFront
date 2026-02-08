@@ -142,11 +142,21 @@
       </mat-card-header>
 
       <mat-card-content class="modal-body">
-        <div class="form-grid">
+        <form #editEntryForm="ngForm" class="form-grid">
           <!-- Entrada -->
           <mat-form-field>
             <mat-label>Entrada</mat-label>
-            <input matInput type="datetime-local" [(ngModel)]="clock_in" name="clock_in" />
+            <input
+              matInput
+              type="datetime-local"
+              [(ngModel)]="clock_in"
+              name="clock_in"
+              required
+              #editIn="ngModel"
+            />
+            @if (editIn.invalid && (editIn.dirty || editIn.touched)) {
+              <mat-error>La fecha de entrada es obligatoria</mat-error>
+            }
           </mat-form-field>
 
           <mat-form-field>
@@ -154,11 +164,18 @@
             <input matInput type="datetime-local" [(ngModel)]="clock_out" name="clock_out" />
           </mat-form-field>
 
+          @if (clock_out && clock_in && clock_out < clock_in) {
+            <div class="error-banner">
+              <mat-icon>warning</mat-icon>
+              La salida no puede ser anterior a la entrada
+            </div>
+          }
+
           <div class="hint">
             <mat-icon>info</mat-icon>
             Si no hay salida, deja el campo vacío.
           </div>
-        </div>
+        </form>
       </mat-card-content>
 
       <mat-card-actions class="modal-actions" align="end">
@@ -166,7 +183,13 @@
           Cancelar
         </button>
 
-        <button mat-raised-button class="btn-primary" type="button" (click)="editTimeEntrie()">
+        <button
+          mat-raised-button
+          class="btn-primary"
+          type="button"
+          (click)="editTimeEntrie()"
+          [disabled]="editEntryForm.invalid || (clock_out && clock_in && clock_out < clock_in)"
+        >
           Guardar cambios
         </button>
       </mat-card-actions>
@@ -202,15 +225,23 @@
       </mat-card-header>
 
       <mat-card-content class="modal-body">
-        <div class="form-grid">
+        <form #createEntryForm="ngForm" class="form-grid">
           <!-- Usuario Select -->
           <mat-form-field>
             <mat-label>Usuario</mat-label>
-            <mat-select [(ngModel)]="newEntry.user_id" name="new_user">
+            <mat-select
+              [(ngModel)]="newEntry.user_id"
+              name="new_user"
+              required
+              #newUserSelect="ngModel"
+            >
               @for (user of usersList; track user.id) {
                 <mat-option [value]="user.id">{{ user.name }} ({{ user.email }})</mat-option>
               }
             </mat-select>
+            @if (newUserSelect.invalid && (newUserSelect.dirty || newUserSelect.touched)) {
+              <mat-error>Selecciona un usuario</mat-error>
+            }
           </mat-form-field>
 
           <!-- Entrada -->
@@ -221,7 +252,12 @@
               type="datetime-local"
               [(ngModel)]="newEntry.clock_in"
               name="new_clock_in"
+              required
+              #newClockIn="ngModel"
             />
+            @if (newClockIn.invalid && (newClockIn.dirty || newClockIn.touched)) {
+              <mat-error>La fecha de entrada es obligatoria</mat-error>
+            }
           </mat-form-field>
 
           <!-- Salida -->
@@ -234,7 +270,14 @@
               name="new_clock_out"
             />
           </mat-form-field>
-        </div>
+
+          @if (newEntry.clock_out && newEntry.clock_in && newEntry.clock_out < newEntry.clock_in) {
+            <div class="error-banner">
+              <mat-icon>warning</mat-icon>
+              La salida no puede ser anterior a la entrada
+            </div>
+          }
+        </form>
       </mat-card-content>
 
       <mat-card-actions class="modal-actions" align="end">
@@ -242,7 +285,16 @@
           Cancelar
         </button>
 
-        <button mat-raised-button class="btn-primary" type="button" (click)="createTimeEntry()">
+        <button
+          mat-raised-button
+          class="btn-primary"
+          type="button"
+          (click)="createTimeEntry()"
+          [disabled]="
+            createEntryForm.invalid ||
+            (newEntry.clock_out && newEntry.clock_in && newEntry.clock_out < newEntry.clock_in)
+          "
+        >
           Crear Fichaje
         </button>
       </mat-card-actions>
