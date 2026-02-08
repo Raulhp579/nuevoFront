@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -33,6 +33,7 @@ export class Login {
   constructor(
     private authService: AuthService,
     private router: Router,
+    private cd: ChangeDetectorRef,
   ) {}
 
   loginForm = new FormGroup({
@@ -58,6 +59,7 @@ export class Login {
     } catch (error: any) {
       console.error('Error en login:', error);
       this.loginError = 'Email o contraseña incorrectos. Inténtelo de nuevo.';
+      this.cd.detectChanges(); // Force UI update
     }
   }
 }

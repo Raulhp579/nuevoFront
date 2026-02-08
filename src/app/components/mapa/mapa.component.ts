@@ -1,4 +1,12 @@
-import { Component, AfterViewInit, OnDestroy, PLATFORM_ID, inject } from '@angular/core';
+import {
+  Component,
+  AfterViewInit,
+  OnDestroy,
+  PLATFORM_ID,
+  inject,
+  NgZone,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 @Component({
@@ -10,6 +18,8 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class MapaComponent implements AfterViewInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
+  private ngZone = inject(NgZone);
+  private cd = inject(ChangeDetectorRef);
   private map: any;
 
   ngAfterViewInit() {
@@ -87,29 +97,32 @@ export class MapaComponent implements AfterViewInit, OnDestroy {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          // Check if map still exists (component might be destroyed)
-          if (!this.map) return;
-          const { latitude, longitude } = position.coords;
+          this.ngZone.run(() => {
+            // Check if map still exists (component might be destroyed)
+            if (!this.map) return;
+            const { latitude, longitude } = position.coords;
 
-          // Check distance to Medac Arena
-          const medacLat = 37.8802566;
-          const medacLon = -4.8040947;
-          const distance = this.calculateDistance(latitude, longitude, medacLat, medacLon);
+            // Check distance to Medac Arena
+            const medacLat = 37.8802566;
+            const medacLon = -4.8040947;
+            const distance = this.calculateDistance(latitude, longitude, medacLat, medacLon);
 
-          if (distance > 0.2) {
-            // 0.2 km = 200m
-            this.errorMessage =
-              'No puedes fichar: Estás a más de 200 metros de tu puesto de trabajo.';
-          } else {
-            this.errorMessage = '';
-          }
+            if (distance > 0.2) {
+              // 0.2 km = 200m
+              this.errorMessage =
+                'No puedes fichar: Estás a más de 200 metros de tu puesto de trabajo.';
+            } else {
+              this.errorMessage = '';
+            }
+            this.cd.detectChanges(); // Ensure UI updates and prevent NG0100
 
-          // Marcador de tu ubicación actual (Icono por defecto - Azul)
-          const miUbicacion = L.marker([latitude, longitude]).bindPopup('<b>¡Estás aquí!</b>');
-          miUbicacion.addTo(this.map);
+            // Marcador de tu ubicación actual (Icono por defecto - Azul)
+            const miUbicacion = L.marker([latitude, longitude]).bindPopup('<b>¡Estás aquí!</b>');
+            miUbicacion.addTo(this.map);
 
-          // Opcional: centrar el mapa en tu ubicación
-          // this.map.setView([latitude, longitude], 14);
+            // Opcional: centrar el mapa en tu ubicación
+            // this.map.setView([latitude, longitude], 14);
+          });
         },
         (error) => {
           console.error('Error obteniendo la ubicación:', error);
